@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Módulo 2 · Agentes de IA y Sistemas Autónomos — eCommerce Institute</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reset.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/black.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #a855f7;
+      --primary-deep: #7e22ce;
+      --secondary: #22d3ee;
+      --bg-dark: #070b16;
+      --bg-card: rgba(17, 25, 45, 0.76);
+      --glass-bg: linear-gradient(165deg, rgba(30, 41, 69, 0.68) 0%, rgba(13, 19, 36, 0.84) 100%);
+      --glass-border: rgba(255, 255, 255, 0.11);
+      --glass-highlight: rgba(255, 255, 255, 0.18);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #f59e0b;
+      --green: #22c55e;
+      --red: #f43f5e;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image:
+        radial-gradient(circle at 14% 16%, rgba(168, 85, 247, 0.16) 0%, transparent 42%),
+        radial-gradient(circle at 86% 82%, rgba(34, 211, 238, 0.13) 0%, transparent 44%),
+        radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.9) 0%, #050811 100%);
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    }
+
+    /* Subtle architectural dot grid overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Override Reveal's 42px base font size for crisp 16:9 widescreen proportions */
+    .reveal {
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      color: var(--text-main);
+      font-size: 18px;
+      line-height: 1.44;
+      z-index: 1;
+    }
+    .reveal .slides section {
+      line-height: 1.44;
+      padding: 0.2rem 0.5rem;
+    }
+    .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      text-transform: none;
+      letter-spacing: -0.026em;
+      line-height: 1.15;
+      color: var(--text-main);
+    }
+    .reveal h1 { font-size: 2.85rem; margin: 0.3rem 0 0.55rem; }
+    .reveal h2 { font-size: 2.15rem; margin: 0.15rem 0 0.5rem; }
+    .reveal h3 { font-size: 1.5rem; margin: 0.2rem 0 0.45rem; }
+    .reveal h4 { font-size: 1.05rem; font-weight: 700; margin: 0 0 0.45rem; line-height: 1.28; letter-spacing: -0.01em; }
+    .reveal p { margin: 0.3rem 0; line-height: 1.46; }
+    .reveal small { font-size: 0.76rem; line-height: 1.35; vertical-align: baseline; }
+    .reveal code {
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 0.1rem 0.42rem;
+      border-radius: 6px;
+      font-size: 0.86em;
+      color: #e2e8f0;
+    }
+
+    .text-gradient {
+      background: linear-gradient(135deg, #38bdf8 0%, #22d3ee 35%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+    .text-gradient-amber {
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 45%, #fb7185 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+    .text-gradient-green {
+      background: linear-gradient(135deg, #4ade80 0%, #22d3ee 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    /* Executive Glass Cards */
+    .glass-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 1.05rem 1.35rem;
+      box-shadow: 0 14px 34px -8px rgba(0, 0, 0, 0.55), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+      margin: 0.3rem auto;
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+      font-size: 0.9rem;
+      line-height: 1.44;
+      position: relative;
+    }
+    .glass-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 40px -8px rgba(0, 0, 0, 0.65), 0 0 24px rgba(34, 211, 238, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.18);
+    }
+
+    /* Section Header Pills */
+    .glass-pill {
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.22), rgba(126, 34, 206, 0.12));
+      border: 1px solid rgba(192, 132, 252, 0.42);
+      color: #e9d5ff;
+      padding: 0.3rem 0.95rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 0.45rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.2;
+      box-shadow: 0 4px 14px rgba(168, 85, 247, 0.15);
+    }
+    .glass-pill.cyan {
+      background: linear-gradient(135deg, rgba(34, 211, 238, 0.18), rgba(14, 116, 144, 0.12));
+      border-color: rgba(34, 211, 238, 0.42);
+      color: #67e8f9;
+      box-shadow: 0 4px 14px rgba(34, 211, 238, 0.12);
+    }
+    .glass-pill.green {
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(21, 128, 61, 0.12));
+      border-color: rgba(74, 222, 128, 0.42);
+      color: #86efac;
+      box-shadow: 0 4px 14px rgba(34, 197, 94, 0.12);
+    }
+    .glass-pill.amber {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.22), rgba(180, 83, 9, 0.12));
+      border-color: rgba(251, 191, 36, 0.45);
+      color: #fde68a;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.12);
+    }
+
+    .badge-mini {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.32rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      padding: 0.22rem 0.62rem;
+      font-size: 0.74rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.01em;
+    }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.15rem; align-items: stretch; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; align-items: stretch; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.9rem; align-items: stretch; }
+    .grid-2 > .glass-card, .grid-3 > .glass-card, .grid-4 > .glass-card { margin: 0; }
+
+    .stat-box { text-align: center; padding: 1.15rem 1.2rem; display: flex; flex-direction: column; justify-content: center; }
+    .stat-number { font-family: 'Outfit', sans-serif; font-size: 3rem; font-weight: 800; line-height: 1; margin-bottom: 0.45rem; letter-spacing: -0.03em; }
+    .stat-label { font-size: 0.84rem; color: #cbd5e1; line-height: 1.42; }
+
+    .reveal ul.premium-list { list-style: none; padding: 0; margin: 0; }
+    .reveal ul.premium-list li { margin-bottom: 0.5rem; font-size: 0.86rem; display: block; position: relative; padding-left: 1.45rem; line-height: 1.42; color: #e2e8f0; text-align: left; }
+    .reveal ul.premium-list li:last-child { margin-bottom: 0; }
+    .reveal ul.premium-list li > i:first-child { color: var(--secondary); position: absolute; left: 0; top: 0.22rem; font-size: 0.86rem; }
+
+    .reveal pre.glass-code {
+      background: linear-gradient(165deg, rgba(9, 13, 26, 0.92), rgba(15, 23, 42, 0.88));
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 14px;
+      padding: 0.95rem 1.2rem;
+      font-size: 0.76rem;
+      font-family: 'JetBrains Mono', monospace;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55);
+      line-height: 1.48;
+      text-align: left;
+    }
+    .reveal pre.glass-code code {
+      background: transparent;
+      border: none;
+      padding: 0;
+    }
+
+    /* Callout / Highlight Banners */
+    .highlight-box {
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      border-left: 4px solid var(--primary);
+      padding: 0.65rem 1.1rem;
+      background: linear-gradient(90deg, rgba(168, 85, 247, 0.14) 0%, rgba(15, 23, 42, 0.65) 100%);
+      margin: 0.65rem auto 0;
+      border-radius: 12px;
+      text-align: left;
+      font-size: 0.85rem;
+      line-height: 1.42;
+      color: #f1f5f9;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    }
+    .highlight-box.cyan {
+      border-color: rgba(34, 211, 238, 0.28);
+      border-left-color: var(--secondary);
+      background: linear-gradient(90deg, rgba(34, 211, 238, 0.12) 0%, rgba(15, 23, 42, 0.65) 100%);
+    }
+    .highlight-box.amber {
+      border-color: rgba(245, 158, 11, 0.32);
+      border-left-color: var(--accent);
+      background: linear-gradient(90deg, rgba(245, 158, 11, 0.14) 0%, rgba(15, 23, 42, 0.65) 100%);
+    }
+    .highlight-box.green {
+      border-color: rgba(34, 197, 94, 0.3);
+      border-left-color: var(--green);
+      background: linear-gradient(90deg, rgba(34, 197, 94, 0.13) 0%, rgba(15, 23, 42, 0.65) 100%);
+    }
+    .highlight-box.red {
+      border-color: rgba(244, 63, 94, 0.32);
+      border-left-color: var(--red);
+      background: linear-gradient(90deg, rgba(244, 63, 94, 0.14) 0%, rgba(15, 23, 42, 0.65) 100%);
+    }
+
+    /* Tables */
+    .reveal table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      font-size: 0.84rem;
+      background: rgba(13, 19, 36, 0.78);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+    }
+    .reveal table th {
+      background: rgba(255, 255, 255, 0.07);
+      padding: 0.65rem 0.9rem;
+      font-size: 0.85rem;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .reveal table td {
+      padding: 0.6rem 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      font-size: 0.82rem;
+      line-height: 1.4;
+    }
+
+    .reveal .progress { height: 4px; background: rgba(255, 255, 255, 0.08); }
+    .reveal .progress span { background: linear-gradient(90deg, var(--secondary), var(--primary)) !important; }
+
+    /* Pyramid */
+    .pyramid-wrapper { display: flex; align-items: center; justify-content: center; gap: 2.2rem; margin-top: 0.55rem; max-width: 1080px; margin-left: auto; margin-right: auto; }
+    .pyramid-container { display: flex; flex-direction: column; align-items: center; gap: 7px; position: relative; width: 450px; flex-shrink: 0; }
+    .pyramid-layer { position: relative; width: 100%; display: flex; align-items: center; justify-content: center; padding: 1.1rem; color: white; transition: all 0.3s ease; border-radius: 6px; box-shadow: 0 8px 24px rgba(0,0,0,0.45); text-align: center; }
+    .pyramid-layer.cima { width: 44%; background: linear-gradient(135deg, #f59e0b 0%, #f43f5e 100%); clip-path: polygon(50% 0%, 100% 100%, 0% 100%); height: 96px; align-items: flex-end; padding-bottom: 0.65rem; }
+    .pyramid-layer.medio { width: 74%; background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%); clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%); height: 96px; }
+    .pyramid-layer.base { width: 100%; background: linear-gradient(135deg, rgba(51, 65, 85, 0.92), rgba(30, 41, 59, 0.92)); border: 1px solid var(--glass-border); clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%); height: 98px; }
+    .pyramid-label { position: absolute; font-weight: 800; font-family: 'Outfit', sans-serif; text-shadow: 0 2px 6px rgba(0,0,0,0.65); letter-spacing: 0.02em; }
+    .pyramid-layer:hover { transform: scale(1.03); z-index: 10; cursor: pointer; filter: brightness(1.12); }
+    .pyr-info-card { text-align: left; max-width: 520px; display: flex; flex-direction: column; gap: 0.65rem; }
+    .pyr-entry {
+      display: flex;
+      gap: 0.85rem;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 0.7rem 1rem;
+      align-items: flex-start;
+    }
+    .pyr-dot { width: 12px; height: 12px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; box-shadow: 0 0 10px currentColor; }
+
+    /* Clawd Hand-Painted Animation Stage */
+    .clawd-stage {
+      display: block;
+      margin: 0.35rem auto 0.55rem;
+      border-radius: 16px;
+      background: radial-gradient(ellipse at 50% 60%, #f6efe2 0%, #e9dec9 100%);
+      border: 2px solid rgba(255, 255, 255, 0.22);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 0 4px rgba(168, 85, 247, 0.12), inset 0 0 24px rgba(217, 119, 87, 0.14);
+    }
+
+    .reveal section.present .glass-card {
+      animation: cardIn 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .reveal section.present .glass-card:nth-child(2) { animation-delay: 0.05s; }
+    .reveal section.present .glass-card:nth-child(3) { animation-delay: 0.10s; }
+    .reveal section.present .glass-card:nth-child(4) { animation-delay: 0.15s; }
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(10px) scale(0.99); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Modern Flow Diagrams */
+    .flow-diagram {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: nowrap;
+      margin: 0.65rem auto;
+      max-width: 1080px;
+    }
+    .flow-box {
+      background: linear-gradient(165deg, rgba(30, 41, 69, 0.72) 0%, rgba(15, 23, 42, 0.88) 100%);
+      border: 1.5px solid rgba(255, 255, 255, 0.14);
+      border-radius: 14px;
+      padding: 0.65rem 0.9rem;
+      min-width: 120px;
+      flex: 1;
+      max-width: 245px;
+      text-align: center;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      line-height: 1.3;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+    .flow-box.cyan   { border-color: rgba(34, 211, 238, 0.45); background: linear-gradient(165deg, rgba(34, 211, 238, 0.13) 0%, rgba(15, 23, 42, 0.88) 100%); }
+    .flow-box.amber  { border-color: rgba(245, 158, 11, 0.45); background: linear-gradient(165deg, rgba(245, 158, 11, 0.13) 0%, rgba(15, 23, 42, 0.88) 100%); }
+    .flow-box.green  { border-color: rgba(34, 197, 94, 0.45); background: linear-gradient(165deg, rgba(34, 197, 94, 0.13) 0%, rgba(15, 23, 42, 0.88) 100%); }
+    .flow-box.purple { border-color: rgba(168, 85, 247, 0.45); background: linear-gradient(165deg, rgba(168, 85, 247, 0.15) 0%, rgba(15, 23, 42, 0.88) 100%); }
+    .flow-box:hover { transform: translateY(-3px); border-color: var(--secondary); box-shadow: 0 12px 26px rgba(34, 211, 238, 0.15); }
+    .flow-box i { font-size: 1.3rem; margin-bottom: 0.28rem; display: block; }
+    .flow-box strong { display: block; font-size: 0.86rem; color: var(--text-main); line-height: 1.25; font-family: 'Outfit', sans-serif; }
+    .flow-box span, .flow-box small { display: block; font-size: 0.74rem; color: var(--text-muted); margin-top: 0.18rem; line-height: 1.25; }
+    .flow-connector {
+      color: var(--secondary);
+      font-size: 1.15rem;
+      font-weight: 800;
+      padding: 0 0.15rem;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.85;
+    }
+
+    @media (max-width: 768px) {
+      .pyramid-wrapper { flex-direction: column; gap: 1rem; }
+      .pyramid-container { width: 100%; }
+      .flow-diagram { flex-wrap: wrap; }
+    }
+
+    /* PDF / Print support */
+    html.print-pdf, html.print-pdf body {
+      background-color: #070b16 !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    html.print-pdf .reveal .slides .pdf-page {
+      background-color: #070b16 !important;
+      background-image:
+        radial-gradient(circle at 14% 16%, rgba(168, 85, 247, 0.16) 0%, transparent 42%),
+        radial-gradient(circle at 86% 82%, rgba(34, 211, 238, 0.13) 0%, transparent 44%),
+        radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.9) 0%, #050811 100%) !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    html.print-pdf .reveal section .glass-card {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  </style>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<!-- 1. PORTADA -->
+<section>
+  <span class="glass-pill"><i class="fa-solid fa-robot"></i> eCommerce Institute · Programa IA · Módulo 2</span>
+  <h1 style="font-size:2.95rem; margin:0.35rem 0 0.5rem; line-height:1.12;">
+    Agentes de <span class="text-gradient">IA</span> y<br>Sistemas <span class="text-gradient-amber">Autónomos</span>
+  </h1>
+  <canvas class="clawd-stage" data-scene="hero" width="680" height="165" style="width:min(100%, 620px); height:auto;"></canvas>
+  <div style="display:flex; justify-content:center; gap:0.55rem; flex-wrap:wrap; margin:0.6rem auto 0.7rem; max-width:1020px;">
+    <span class="badge-mini" style="color:#fde68a; border-color:rgba(245,158,11,0.45); background:rgba(245,158,11,0.1); padding:0.28rem 0.72rem; font-size:0.76rem;"><i class="fa-solid fa-trophy"></i> Benchmarks (AA · LM Arena)</span>
+    <span class="badge-mini" style="color:var(--secondary); border-color:rgba(34,211,238,0.4); background:rgba(34,211,238,0.08); padding:0.28rem 0.72rem; font-size:0.76rem;"><i class="fa-solid fa-sliders"></i> System Prompt &amp; Contexto</span>
+    <span class="badge-mini" style="color:#e9d5ff; border-color:rgba(168,85,247,0.45); background:rgba(168,85,247,0.1); padding:0.28rem 0.72rem; font-size:0.76rem;"><i class="fa-solid fa-compass"></i> Copiloto Estratégico</span>
+    <span class="badge-mini" style="color:#86efac; border-color:rgba(34,197,94,0.45); background:rgba(34,197,94,0.1); padding:0.28rem 0.72rem; font-size:0.76rem;"><i class="fa-solid fa-wand-magic-sparkles"></i> Custom GPTs · Claude Projects · v0</span>
+    <span class="badge-mini" style="color:#f8fafc; border-color:rgba(255,255,255,0.28); background:rgba(255,255,255,0.07); padding:0.28rem 0.72rem; font-size:0.76rem;"><i class="fa-solid fa-clock-rotate-left"></i> Cowork · Skills · MCP</span>
+  </div>
+  <div class="glass-card" style="display:inline-flex; align-items:center; gap:1.1rem; padding:0.45rem 1.25rem; border-radius:999px; font-size:0.82rem; color:var(--text-muted); font-weight:600; margin-top:0.1rem;">
+    <span><i class="fa-regular fa-clock" style="color:var(--secondary); margin-right:0.35rem;"></i> Online en vivo · eLeaderClass AI+</span>
+    <span style="opacity:0.3;">|</span>
+    <span><i class="fa-solid fa-bolt" style="color:var(--accent); margin-right:0.35rem;"></i> Sin código · Orientado a negocio</span>
+    <span style="opacity:0.3;">|</span>
+    <span><i class="fa-solid fa-layer-group" style="color:var(--green); margin-right:0.35rem;"></i> Casos reales paso a paso</span>
+  </div>
+</section>
+
+<!-- 2. PRESENTACIÓN SPEAKER -->
+<section>
+  <div class="grid-2" style="max-width: 1080px; align-items: center; margin: 0 auto; gap: 2rem;">
+    <div style="position: relative; display: flex; justify-content: center;">
+      <div style="position: relative; padding: 6px; border-radius: 26px; background: linear-gradient(135deg, rgba(34,211,238,0.5), rgba(168,85,247,0.5), rgba(245,158,11,0.5)); box-shadow: 0 20px 50px rgba(0,0,0,0.65);">
+        <img src="assets/axel-laban-arzubi.png" style="border-radius: 21px; display: block; width: 100%; max-width: 335px;" alt="Axel Laban Arzubi">
+      </div>
+      <div class="glass-card" style="position: absolute; bottom: -14px; right: 18px; padding: 0.5rem; width: 116px; height: 116px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(7,11,22,0.94); border: 2px solid var(--secondary); margin: 0; border-radius: 16px; box-shadow: 0 12px 28px rgba(0,0,0,0.6);">
+        <img src="assets/qr.png" style="width: 100%; border-radius: 8px;" alt="LinkedIn QR">
+      </div>
+    </div>
+    <div style="text-align: left;">
+      <span class="glass-pill cyan"><i class="fa-solid fa-bolt"></i> Tu personal trainer de AI</span>
+      <h2 style="margin: 0.2rem 0 0.7rem 0; font-size: 2.45rem;">Axel <span class="text-gradient">Laban Arzubi</span></h2>
+
+      <div style="display: flex; flex-direction: column; gap: 0.55rem;">
+        <div class="glass-card" style="padding: 0.65rem 0.95rem; margin: 0; display: flex; align-items: center; gap: 0.8rem; border-left: 3px solid var(--secondary);">
+          <div style="width: 34px; height: 34px; border-radius: 10px; background: rgba(34,211,238,0.12); display: flex; align-items: center; justify-content: center; color: var(--secondary); flex-shrink: 0;"><i class="fa-solid fa-rocket"></i></div>
+          <div style="font-size: 0.85rem; line-height: 1.35;"><strong>Emprendedor:</strong> Co-fundé HolaVeggie, un token de blockchain y TheFreshAgency.</div>
+        </div>
+
+        <div class="glass-card" style="padding: 0.65rem 0.95rem; margin: 0; display: flex; align-items: center; gap: 0.8rem; border-left: 3px solid var(--primary);">
+          <div style="width: 34px; height: 34px; border-radius: 10px; background: rgba(168,85,247,0.14); display: flex; align-items: center; justify-content: center; color: #e9d5ff; flex-shrink: 0;"><i class="fa-solid fa-chart-line"></i></div>
+          <div style="font-size: 0.85rem; line-height: 1.35;"><strong>Experiencia:</strong> Lideré BI &amp; eCommerce de Grupo Marquez y el área comercial de Avenida.com.</div>
+        </div>
+
+        <div class="glass-card" style="padding: 0.65rem 0.95rem; margin: 0; display: flex; align-items: center; gap: 0.8rem; border-left: 3px solid var(--accent);">
+          <div style="width: 34px; height: 34px; border-radius: 10px; background: rgba(245,158,11,0.14); display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0;"><i class="fa-solid fa-flask"></i></div>
+          <div style="font-size: 0.85rem; line-height: 1.35;"><strong>Laboratorio IA:</strong> Creo productos digitales hechos con IA en <a href="https://a13i-lab.vercel.app/" target="_blank" style="color: var(--secondary); text-decoration: underline; font-weight: 700;">a13i-lab.vercel.app ↗</a></div>
+        </div>
+
+        <div class="glass-card" style="padding: 0.65rem 0.95rem; margin: 0; display: flex; align-items: center; gap: 0.8rem; border-left: 3px solid #ef4444;">
+          <div style="width: 34px; height: 34px; border-radius: 10px; background: rgba(239,68,68,0.14); display: flex; align-items: center; justify-content: center; color: #ef4444; flex-shrink: 0;"><i class="fa-brands fa-youtube"></i></div>
+          <div style="font-size: 0.85rem; line-height: 1.35;"><strong>YouTube:</strong> Tutoriales y sistemas de IA paso a paso en <a href="https://www.youtube.com/@soyaxellaban" target="_blank" style="color: var(--text-main); text-decoration: underline; font-weight: 700;">@soyaxellaban ↗</a></div>
+        </div>
+      </div>
+
+      <div style="margin-top: 0.7rem; font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem;">
+        <i class="fa-brands fa-linkedin" style="color: #38bdf8; font-size: 1.05rem;"></i> <span>Escaneá el QR para conectar en LinkedIn</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. HOJA DE RUTA DEL MÓDULO 2 -->
+<section>
+  <span class="glass-pill cyan"><i class="fa-regular fa-map"></i> RECORRIDO DEL MÓDULO 2</span>
+  <h2>Hoja de <span class="text-gradient">Ruta</span> — De Promptear a Construir Agentes</h2>
+  <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:0.85rem;">En el Módulo 1 vimos modelos y prompting. Hoy pasamos a <strong>copilotos permanentes, agentes personalizados y sistemas autónomos</strong>.</p>
+  <div class="grid-4" style="max-width:1100px; margin:0 auto 0.8rem;">
+    <div class="glass-card" style="text-align:left; border-top:4px solid var(--secondary); display:flex; flex-direction:column; justify-content:space-between;">
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+          <span class="glass-pill cyan" style="font-size:0.66rem; margin:0;">BLOQUE 1</span>
+          <span style="font-family:'Outfit'; font-size:1.3rem; font-weight:800; color:rgba(34,211,238,0.35);">01</span>
+        </div>
+        <h4 style="font-size:1.02rem; color:var(--secondary);">Arquitectura y Benchmarks</h4>
+        <p style="font-size:0.8rem; color:var(--text-muted); margin:0;">De chat aislado a agente personalizado, niveles de autonomía y evaluación con <strong>Artificial Analysis</strong> y <strong>LM Arena</strong>.</p>
+      </div>
+      <div style="margin-top:0.65rem; font-size:0.73rem; color:var(--secondary); font-weight:600;"><i class="fa-solid fa-compass"></i> Fundamentos + Criterio</div>
+    </div>
+
+    <div class="glass-card" style="text-align:left; border-top:4px solid var(--primary); display:flex; flex-direction:column; justify-content:space-between;">
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+          <span class="glass-pill" style="font-size:0.66rem; margin:0;">BLOQUE 2</span>
+          <span style="font-family:'Outfit'; font-size:1.3rem; font-weight:800; color:rgba(168,85,247,0.35);">02</span>
+        </div>
+        <h4 style="font-size:1.02rem; color:#e9d5ff;">Copiloto y Diseño Lógico</h4>
+        <p style="font-size:0.8rem; color:var(--text-muted); margin:0;"><strong>System Prompt</strong>, perfiles, personalidad, persistencia de contexto y estructura lógica para resolver problemas de negocio.</p>
+      </div>
+      <div style="margin-top:0.65rem; font-size:0.73rem; color:#e9d5ff; font-weight:600;"><i class="fa-solid fa-sliders"></i> Copiloto estratégico</div>
+    </div>
+
+    <div class="glass-card" style="text-align:left; border-top:4px solid var(--accent); display:flex; flex-direction:column; justify-content:space-between;">
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+          <span class="glass-pill amber" style="font-size:0.66rem; margin:0;">BLOQUE 3</span>
+          <span style="font-family:'Outfit'; font-size:1.3rem; font-weight:800; color:rgba(245,158,11,0.35);">03</span>
+        </div>
+        <h4 style="font-size:1.02rem; color:#fde68a;">Sin Código y Autonomía</h4>
+        <p style="font-size:0.8rem; color:var(--text-muted); margin:0;"><strong>Custom GPTs, Claude Projects, Gems y v0</strong> + el salto a sistemas autónomos con <strong>Skills, MCP y Claude Cowork</strong>.</p>
+      </div>
+      <div style="margin-top:0.65rem; font-size:0.73rem; color:var(--accent); font-weight:600;"><i class="fa-solid fa-wand-magic-sparkles"></i> Herramientas reales</div>
+    </div>
+
+    <div class="glass-card" style="text-align:left; border-top:4px solid var(--green); display:flex; flex-direction:column; justify-content:space-between;">
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+          <span class="glass-pill green" style="font-size:0.66rem; margin:0;">BLOQUE 4</span>
+          <span style="font-family:'Outfit'; font-size:1.3rem; font-weight:800; color:rgba(34,197,94,0.35);">04</span>
+        </div>
+        <h4 style="font-size:1.02rem; color:#86efac;">Casos de Uso en Vivo</h4>
+        <p style="font-size:0.8rem; color:var(--text-muted); margin:0;">Ejemplos aplicados para acelerar decisiones y gestionar el trabajo diario con <strong>Agentes de IA</strong> y <strong>Sistemas Autónomos</strong>.</p>
+      </div>
+      <div style="margin-top:0.65rem; font-size:0.73rem; color:var(--green); font-weight:600;"><i class="fa-solid fa-bolt"></i> Qué hacen y cómo armarlos</div>
+    </div>
+  </div>
+  <div class="highlight-box cyan" style="max-width:1100px; text-align:center;">
+    <i class="fa-solid fa-bullseye" style="color:var(--secondary); margin-right:0.4rem;"></i> <strong>Regla de la clase:</strong> cero sobre-ingeniería. Empezamos sin código y sumamos autonomía solo donde genera impacto real.
+  </div>
+</section>
+
+<!-- 4. METODOLOGÍA DE TRABAJO DIARIO Y DECISIONES: PIRÁMIDE + REGLA DEL -20% -->
+<section>
+  <section>
+    <span class="glass-pill"><i class="fa-solid fa-layer-group"></i> ACELERAR DECISIONES Y GESTIÓN DIARIA</span>
+    <h2>Pirámide de <span class="text-gradient">Foco Estratégico</span></h2>
+    <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:0.55rem;">Cómo usar la IA como <strong>copiloto estratégico permanente</strong> liberando el tiempo operativo de tu semana.</p>
+
+    <div class="pyramid-wrapper">
+      <div class="pyramid-container">
+        <div class="pyramid-layer cima">
+          <span class="pyramid-label" style="bottom:12px; font-size:0.92rem;">CIMA: ESTRATÉGICO</span>
+        </div>
+        <div class="pyramid-layer medio">
+          <span class="pyramid-label" style="font-size:0.9rem;">MEDIO: TRABAJO ANALÍTICO</span>
+        </div>
+        <div class="pyramid-layer base">
+          <span class="pyramid-label" style="font-size:0.85rem;">BASE: TAREAS REPETITIVAS</span>
+        </div>
+      </div>
+
+      <div class="pyr-info-card">
+        <div class="pyr-entry" style="border-left: 3px solid #f43f5e;">
+          <div class="pyr-dot" style="background:#f43f5e; color:#f43f5e;"></div>
+          <div>
+            <div style="display:flex; align-items:center; gap:0.5rem;">
+              <strong style="color:#fda4af; font-size:0.9rem;">Cima: Decisión y Liderazgo</strong>
+              <span class="badge-mini" style="color:#fda4af; font-size:0.66rem; padding:0.1rem 0.45rem;">Humano + Copiloto</span>
+            </div>
+            <p style="font-size:0.79rem; color:var(--text-muted); margin:0.18rem 0 0;">Estrategia comercial, negociación, trade-offs con info incompleta y criterio de negocio.</p>
+          </div>
+        </div>
+        <div class="pyr-entry" style="border-left: 3px solid var(--secondary);">
+          <div class="pyr-dot" style="background:var(--secondary); color:var(--secondary);"></div>
+          <div>
+            <div style="display:flex; align-items:center; gap:0.5rem;">
+              <strong style="color:var(--secondary); font-size:0.9rem;">Medio: Análisis y Preparación</strong>
+              <span class="badge-mini" style="color:var(--secondary); font-size:0.66rem; padding:0.1rem 0.45rem;">Agentes Personalizados</span>
+            </div>
+            <p style="font-size:0.79rem; color:var(--text-muted); margin:0.18rem 0 0;">Investigar mercado, sintetizar reuniones, estructurar propuestas y preparar escenarios.</p>
+          </div>
+        </div>
+        <div class="pyr-entry" style="border-left: 3px solid #94a3b8;">
+          <div class="pyr-dot" style="background:#94a3b8; color:#94a3b8;"></div>
+          <div>
+            <div style="display:flex; align-items:center; gap:0.5rem;">
+              <strong style="color:#cbd5e1; font-size:0.9rem;">Base: Rutinas Operativas</strong>
+              <span class="badge-mini" style="color:#cbd5e1; font-size:0.66rem; padding:0.1rem 0.45rem;">Sistemas Autónomos</span>
+            </div>
+            <p style="font-size:0.79rem; color:var(--text-muted); margin:0.18rem 0 0;">Relevamientos diarios, armado de reportes estándar, clasificación y seguimiento recurrente.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REGLA DEL -20% DE PRODUCTIVIDAD -->
+  <section>
+    <div style="display:flex; align-items:center; justify-content:center; gap:0.75rem; margin-bottom:0.35rem;">
+      <span class="glass-pill amber" style="margin-bottom:0;"><i class="fa-solid fa-chart-line"></i> LA REGLA DEL -20% DE PRODUCTIVIDAD</span>
+      <h2 style="margin:0; font-size:1.85rem;">Cada cambio de herramienta <span class="text-gradient-amber">es una apuesta.</span></h2>
+    </div>
+
+    <div style="display:grid; grid-template-columns:0.76fr 1.64fr; gap:0.85rem; max-width:1160px; margin:0 auto 0.55rem; align-items:stretch;">
+      <div class="glass-card" style="text-align:left; padding:0.75rem 0.95rem; display:flex; flex-direction:column; justify-content:space-between; gap:0.45rem; margin:0;">
+        <div style="display:flex; gap:0.65rem; align-items:flex-start;">
+          <div style="width:32px; height:32px; border-radius:50%; border:1.5px solid rgba(244,63,94,0.4); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--red); background:rgba(244,63,94,0.1);">
+            <i class="fa-solid fa-arrow-trend-down" style="font-size:0.8rem;"></i>
+          </div>
+          <div style="font-size:0.75rem; line-height:1.32;">
+            <strong style="color:var(--text-main);">Cada herramienta nueva cobra un "impuesto"</strong> de aprendizaje al principio. No es un "quizás": es seguro.
+            <div style="color:var(--text-muted); font-size:0.69rem; margin-top:0.1rem;">Puede bajar tu velocidad un 20% o 50% inicial.</div>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:0.65rem; align-items:flex-start;">
+          <div style="width:32px; height:32px; border-radius:50%; border:1.5px solid rgba(34,211,238,0.4); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--secondary); background:rgba(34,211,238,0.1);">
+            <i class="fa-solid fa-question" style="font-size:0.8rem;"></i>
+          </div>
+          <div style="font-size:0.75rem; line-height:1.32;">
+            <strong style="color:var(--text-main);">La pregunta antes de adoptar otra app:</strong>
+            <div style="color:var(--secondary); font-style:italic; font-size:0.72rem; margin-top:0.1rem;">"¿Me va a dejar POR ENCIMA de la línea en la que estaría si profundizo lo que ya uso?"</div>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:0.65rem; align-items:flex-start;">
+          <div style="width:32px; height:32px; border-radius:50%; border:1.5px solid rgba(245,158,11,0.4); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--accent); background:rgba(245,158,11,0.1);">
+            <i class="fa-solid fa-scale-balanced" style="font-size:0.78rem;"></i>
+          </div>
+          <div style="font-size:0.75rem; line-height:1.32;">
+            <strong style="color:var(--text-main);">Evitá el "turismo de herramientas":</strong>
+            <span style="color:var(--text-muted);"> 2 plataformas bien configuradas con tu contexto superan a 15 cuentas a medio usar.</span>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:0.65rem; align-items:center;">
+          <div style="width:32px; height:32px; border-radius:50%; border:1.5px solid rgba(34,197,94,0.4); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--green); background:rgba(34,197,94,0.1);">
+            <i class="fa-regular fa-star" style="font-size:0.8rem;"></i>
+          </div>
+          <div style="font-size:0.79rem; line-height:1.25;">
+            <strong style="color:var(--text-main);">"Nuevo" rara vez le gana a <span style="color:#4ade80;">"consistente"</span>.</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card" style="padding:0.55rem 0.75rem; margin:0; display:flex; align-items:center; justify-content:center; background:rgba(9,13,26,0.92); border:1.5px solid rgba(255,255,255,0.15);">
+        <svg viewBox="0 0 740 380" style="width:100%; height:375px; display:block; overflow:visible; font-family:'Plus Jakarta Sans', sans-serif;">
+          <line x1="36" y1="18" x2="36" y2="338" stroke="rgba(255,255,255,0.65)" stroke-width="2.8"/>
+          <line x1="36" y1="338" x2="716" y2="338" stroke="rgba(255,255,255,0.65)" stroke-width="2.8"/>
+          <polygon points="722,338 708,331 708,345" fill="rgba(255,255,255,0.65)"/>
+
+          <text x="50" y="28" fill="#ffffff" font-size="16" font-weight="800">Productividad</text>
+          <text x="50" y="47" fill="#94a3b8" font-size="12.5" font-weight="500">(Output en el tiempo)</text>
+          <text x="655" y="366" fill="#ffffff" font-size="15" font-weight="800">Tiempo</text>
+
+          <line x1="295" y1="68" x2="295" y2="338" stroke="rgba(255,255,255,0.45)" stroke-width="2.2" stroke-dasharray="6,6"/>
+          <text x="295" y="36" fill="#ffffff" font-size="14" font-weight="800" text-anchor="middle">Cambio a</text>
+          <text x="295" y="54" fill="#cbd5e1" font-size="13" font-weight="600" text-anchor="middle">nueva herramienta</text>
+
+          <path d="M 36 200 Q 165 182, 295 178 L 690 172" fill="none" stroke="#22c55e" stroke-width="4.2"/>
+          <polygon points="700,172 685,164 685,180" fill="#22c55e"/>
+          <text x="148" y="124" fill="#86efac" font-size="14" font-style="italic" font-weight="600" text-anchor="middle">Te quedaste con tu</text>
+          <text x="148" y="143" fill="#86efac" font-size="14" font-style="italic" font-weight="600" text-anchor="middle">herramienta actual</text>
+          <path d="M 168 150 Q 186 165, 186 179" fill="none" stroke="#86efac" stroke-width="2"/>
+          <polygon points="186,182 181,173 191,173" fill="#86efac"/>
+
+          <line x1="295" y1="178" x2="332" y2="274" stroke="#38bdf8" stroke-width="4.5" stroke-linecap="round"/>
+
+          <line x1="262" y1="180" x2="274" y2="180" stroke="#cbd5e1" stroke-width="2"/>
+          <line x1="268" y1="180" x2="268" y2="272" stroke="#cbd5e1" stroke-width="2"/>
+          <line x1="262" y1="272" x2="274" y2="272" stroke="#cbd5e1" stroke-width="2"/>
+          <text x="286" y="232" fill="#ffffff" font-size="14.5" font-weight="800" text-anchor="end">-20%</text>
+
+          <text x="152" y="252" fill="#38bdf8" font-size="14" font-weight="700" text-anchor="middle">La caída es el "impuesto"</text>
+          <text x="152" y="272" fill="#7dd3fc" font-size="12.5" font-weight="600" text-anchor="middle">(Curva de adaptación)</text>
+          <path d="M 218 238 Q 238 222, 256 228" fill="none" stroke="#38bdf8" stroke-width="2"/>
+
+          <path d="M 332 274 C 378 228, 455 100, 686 72" fill="none" stroke="#38bdf8" stroke-width="3.8" stroke-dasharray="8,6"/>
+          <polygon points="696,71 681,64 683,80" fill="#38bdf8"/>
+
+          <rect x="488" y="8" width="224" height="54" rx="9" fill="rgba(34,197,94,0.14)" stroke="rgba(34,197,94,0.55)" stroke-width="1.5"/>
+          <text x="502" y="29" fill="#4ade80" font-size="14" font-weight="800">✓ VALE LA PENA</text>
+          <text x="502" y="45" fill="#e2e8f0" font-size="11.5">Te deja muy por encima de</text>
+          <text x="502" y="57" fill="#cbd5e1" font-size="11.5">donde hubieras estado.</text>
+
+          <path d="M 332 274 Q 388 280, 480 270 L 686 268" fill="none" stroke="#f87171" stroke-width="3.8" stroke-dasharray="8,6"/>
+          <polygon points="696,268 681,260 681,276" fill="#f87171"/>
+
+          <rect x="488" y="278" width="224" height="52" rx="9" fill="rgba(239,68,68,0.14)" stroke="rgba(239,68,68,0.55)" stroke-width="1.5"/>
+          <text x="502" y="298" fill="#f87171" font-size="13.5" font-weight="800">✗ NO VALE LA PENA</text>
+          <text x="502" y="313" fill="#e2e8f0" font-size="11.5">Cambiaste por moda y quedás</text>
+          <text x="502" y="325" fill="#cbd5e1" font-size="11.5">por debajo de tu ritmo previo.</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="highlight-box amber" style="max-width:1160px; margin-top:0.2rem;">
+      <strong>Aplicación directa hoy:</strong> Si tu equipo ya usa ChatGPT o Gemini, arrancá creando tu primer agente ahí (<strong>Custom GPT / Gem</strong>). Pasá a <strong>Claude Projects / Cowork</strong> cuando necesites mayor profundidad estratégica o tareas autónomas.
+    </div>
+  </section>
+</section>
+
+<!-- 5. BLOQUE 1A: CONCEPTO, FUNCIONAMIENTO Y ARQUITECTURA DE ASISTENTES Y AGENTES -->
+<section>
+  <section>
+    <span class="glass-pill cyan"><i class="fa-solid fa-cubes"></i> BLOQUE 1 · CONCEPTO Y EVOLUCIÓN</span>
+    <h2>Chat vs. <span class="text-gradient">Copiloto</span> vs. <span class="text-gradient-amber">Agente Autónomo</span></h2>
+    <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:0.75rem;">Entender qué separa una consulta aislada de un asistente personalizado y de un sistema autónomo.</p>
+    <table style="max-width:1080px; margin:0 auto; text-align:left;">
+      <tr>
+        <th style="width:16%; color:var(--text-muted);">Dimensión</th>
+        <th style="width:28%; text-align:center; color:#cbd5e1;"><i class="fa-regular fa-comment-dots" style="color:#94a3b8; margin-right:0.35rem;"></i> Chat Suelto (Mód. 1)</th>
+        <th style="width:28%; text-align:center; color:var(--secondary);"><i class="fa-solid fa-user-astronaut" style="color:var(--secondary); margin-right:0.35rem;"></i> Asistente / Copiloto IA</th>
+        <th style="width:28%; text-align:center; color:#fde68a;"><i class="fa-solid fa-robot" style="color:var(--accent); margin-right:0.35rem;"></i> Agente / Sistema Autónomo</th>
+      </tr>
+      <tr>
+        <td style="color:var(--text-muted); font-weight:700;">Memoria de negocio</td>
+        <td style="text-align:center;">Nula: explicás quién sos en cada prompt</td>
+        <td style="text-align:center;"><strong>Contexto persistente</strong> (documentos, tono y reglas fijas)</td>
+        <td style="text-align:center;">Contexto + acceso en vivo a tus herramientas reales</td>
+      </tr>
+      <tr style="background:rgba(255,255,255,0.025);">
+        <td style="color:var(--text-muted); font-weight:700;">Cómo trabaja</td>
+        <td style="text-align:center;">1 pregunta → 1 respuesta</td>
+        <td style="text-align:center;">Colabora con vos aplicando un rol experto</td>
+        <td style="text-align:center;">Planifica varios pasos, usa tools y verifica el resultado</td>
+      </tr>
+      <tr>
+        <td style="color:var(--text-muted); font-weight:700;">Cuándo se activa</td>
+        <td style="text-align:center;">Cuando escribís</td>
+        <td style="text-align:center;">Cuando abrís el Proyecto / GPT</td>
+        <td style="text-align:center; color:#86efac; font-weight:600;">A pedido tuyo <strong>o programado solo (24/7)</strong></td>
+      </tr>
+      <tr style="background:rgba(255,255,255,0.025);">
+        <td style="color:var(--text-muted); font-weight:700;">Dónde vive hoy</td>
+        <td style="text-align:center; font-size:0.79rem; color:var(--text-muted);">ChatGPT / Claude / Gemini estándar</td>
+        <td style="text-align:center; font-size:0.79rem; color:var(--secondary);">Claude Projects · Custom GPTs · Gems</td>
+        <td style="text-align:center; font-size:0.79rem; color:#fde68a;">Claude Cowork · Rutinas Cloud · MCP</td>
+      </tr>
+      <tr>
+        <td style="color:var(--text-muted); font-weight:700;">Caso típico</td>
+        <td style="text-align:center; font-size:0.78rem; color:var(--text-muted);">"Resumime este mail"</td>
+        <td style="text-align:center; font-size:0.78rem; color:var(--text-muted);">Sparring comercial que conoce tus márgenes y catálogo</td>
+        <td style="text-align:center; font-size:0.78rem; color:var(--text-muted);">Investigar reuniones del día y dejarte el brief a las 7 AM</td>
+      </tr>
+    </table>
+    <div class="highlight-box cyan" style="max-width:1080px;">
+      <strong>Regla simple:</strong> Si querés <strong>pensar y decidir más rápido</strong> → armá un <strong>Copiloto con Contexto</strong>. Si querés <strong>delegar una tarea multi-paso o recurrente</strong> → armá un <strong>Agente / Sistema Autónomo</strong>.
+    </div>
+  </section>
+
+  <!-- ARQUITECTURA INTERNA DE UN AGENTE -->
+  <section>
+    <span class="glass-pill"><i class="fa-solid fa-microchip"></i> ARQUITECTURA POR DENTRO</span>
+    <h2>Las 4 piezas de todo <span class="text-gradient">Agente de IA</span></h2>
+    <canvas class="clawd-stage" data-scene="anatomy" width="660" height="125"></canvas>
+
+    <div class="grid-4" style="max-width:1120px; margin:0 auto; text-align:left;">
+      <div class="glass-card" style="border-top:4px solid var(--secondary);">
+        <span class="badge-mini" style="color:var(--secondary); border-color:rgba(34,211,238,0.4); margin-bottom:0.4rem;">1. El Cerebro</span>
+        <h4 style="color:var(--secondary);">Modelo (LLM)</h4>
+        <p style="font-size:0.79rem; color:var(--text-muted); margin:0;">El motor que razona, evalúa opciones y decide qué paso dar (Claude, Gemini, GPT).</p>
+      </div>
+
+      <div class="glass-card" style="border-top:4px solid var(--primary);">
+        <span class="badge-mini" style="color:#e9d5ff; border-color:rgba(168,85,247,0.45); margin-bottom:0.4rem;">2. La Identidad</span>
+        <h4 style="color:#e9d5ff;">Perfil + Contexto</h4>
+        <p style="font-size:0.79rem; color:var(--text-muted); margin:0;">Instrucciones del sistema, personalidad, reglas del negocio y memoria persistente.</p>
+      </div>
+
+      <div class="glass-card" style="border-top:4px solid var(--accent);">
+        <span class="badge-mini" style="color:#fde68a; border-color:rgba(245,158,11,0.45); margin-bottom:0.4rem;">3. Las Manos</span>
+        <h4 style="color:#fde68a;">Tools y Conexiones</h4>
+        <p style="font-size:0.79rem; color:var(--text-muted); margin:0;">Búsqueda web, lectura de archivos, creación de pantallas o conexión a tus apps (MCP).</p>
+      </div>
+
+      <div class="glass-card" style="border-top:4px solid var(--green);">
+        <span class="badge-mini" style="color:#86efac; border-color:rgba(34,197,94,0.45); margin-bottom:0.4rem;">4. El Volante</span>
+        <h4 style="color:#86efac;">Cadencia + Control</h4>
+        <p style="font-size:0.79rem; color:var(--text-muted); margin:0;">Cuándo se ejecuta (bajo demanda o programado) y dónde frena para pedir tu OK humano.</p>
+      </div>
+    </div>
+
+    <div class="highlight-box amber" style="max-width:1120px;">
+      <strong>Idea clave:</strong> No necesitás programar ninguna de estas 4 piezas. Las herramientas actuales ya traen los casilleros listos para que vos completes el criterio de negocio.
+    </div>
+  </section>
+</section>
+
+<!-- 6. BLOQUE 1B: BENCHMARKS (ARTIFICIAL ANALYSIS + LM ARENA) & MODELOS -->
+<section>
+  <!-- SLIDE BENCHMARKS -->
+  <section>
+    <span class="glass-pill amber"><i class="fa-solid fa-magnifying-glass-chart"></i> BENCHMARKS OBJETIVOS · CERO MARKETING</span>
+    <h2>Cómo elegir el cerebro: <span class="text-gradient">Artificial Analysis &amp; LM Arena</span></h2>
+    <canvas class="clawd-stage" data-scene="benchmarks" width="660" height="125"></canvas>
+
+    <div class="grid-2" style="max-width:1080px; margin:0 auto; text-align:left;">
+      <!-- Artificial Analysis -->
+      <div class="glass-card" style="border-top:4px solid var(--green); display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.45rem;">
+            <h4 style="color:#86efac; margin:0; font-size:1.08rem;"><i class="fa-solid fa-bolt" style="color:var(--green); margin-right:0.4rem;"></i> Artificial Analysis</h4>
+            <a href="https://artificialanalysis.ai/" target="_blank" class="badge-mini" style="color:#86efac; border-color:rgba(34,197,94,0.45); text-decoration:none;">artificialanalysis.ai ↗</a>
+          </div>
+          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:0.55rem;">La brújula cuantitativa independiente para comparar todos los modelos del mercado sin sesgo comercial.</p>
+          <ul class="premium-list" style="font-size:0.81rem;">
+            <li><i class="fa-solid fa-gauge-high" style="color:var(--green);"></i> <strong>3 métricas en un gráfico:</strong> Nivel de inteligencia (IQ), Velocidad de respuesta y Costo real.</li>
+            <li><i class="fa-solid fa-briefcase" style="color:var(--green);"></i> <strong>Rankings de Agentes:</strong> evalúa qué modelo rinde mejor ejecutando tareas largas de trabajo y herramientas.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- LM Arena -->
+      <div class="glass-card" style="border-top:4px solid var(--accent); display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.45rem;">
+            <h4 style="color:#fde68a; margin:0; font-size:1.08rem;"><i class="fa-solid fa-trophy" style="color:var(--accent); margin-right:0.4rem;"></i> LM Arena (Chatbot &amp; Agent Arena)</h4>
+            <a href="https://lmarena.ai/" target="_blank" class="badge-mini" style="color:#fde68a; border-color:rgba(245,158,11,0.45); text-decoration:none;">lmarena.ai ↗</a>
+          </div>
+          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:0.55rem;">El ranking colaborativo más confiable del mundo basado en votaciones humanas a ciegas (puntaje Elo).</p>
+          <ul class="premium-list" style="font-size:0.81rem;">
+            <li><i class="fa-solid fa-masks-theater" style="color:var(--accent);"></i> <strong>Prueba A/B a ciegas:</strong> ponés el caso real de tu empresa, dos modelos responden sin nombre y elegís al ganador.</li>
+            <li><i class="fa-solid fa-robot" style="color:var(--accent);"></i> <strong>Categorías por habilidad:</strong> texto comercial, análisis de datos, diseño web/UI y agentes para trabajo.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight-box cyan" style="max-width:1080px;">
+      <strong>Hábito recomendado:</strong> Antes de casarte con un modelo para tu agente, mirá el cuadrante calidad/costo en <strong>Artificial Analysis</strong> y validá tu prompt real a ciegas en <strong>LM Arena</strong>.
+    </div>
+  </section>
+
+  <!-- SLIDE MIX DE MODELOS -->
+  <section>
+    <span class="glass-pill amber"><i class="fa-solid fa-scale-balanced"></i> CRITERIO DE SELECCIÓN</span>
+    <h2>¿Qué familia de modelos usar <span class="text-gradient">en cada rol</span>?</h2>
+    <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:0.65rem;">No todos los agentes necesitan el motor más pesado: elegí según volumen, contexto o profundidad estratégica.</p>
+
+    <div class="grid-3" style="max-width:1080px; margin:0 auto 0.65rem;">
+      <div class="glass-card" style="text-align:left; border-top:4px solid var(--green);">
+        <span class="badge-mini" style="color:#86efac; border-color:rgba(34,197,94,0.4); margin-bottom:0.35rem;">1. Velocidad y Volumen</span>
+        <h4 style="color:#86efac; margin-bottom:0.25rem;">Clasificar, resumir y filtrar</h4>
+        <p style="font-size:0.78rem; color:var(--text-muted); margin-bottom:0.55rem;">Respuestas instantáneas y costo mínimo cuando la tarea es clara y repetitiva.</p>
+        <div style="font-size:0.79rem; line-height:1.55; border-top:1px solid var(--glass-border); padding-top:0.45rem;">
+          • <strong>Claude Haiku</strong> (Anthropic)<br>
+          • <strong>Gemini Flash-Lite</strong> (Google)<br>
+          • <strong>GPT Mini / Luna</strong> (OpenAI)
+        </div>
+      </div>
+
+      <div class="glass-card" style="text-align:left; border-top:4px solid var(--secondary); background:linear-gradient(165deg, rgba(34,211,238,0.12) 0%, rgba(13,19,36,0.88) 100%);">
+        <span class="badge-mini" style="color:var(--secondary); border-color:rgba(34,211,238,0.45); margin-bottom:0.35rem;">2. Gestión Diaria ⭐</span>
+        <h4 style="color:var(--secondary); margin-bottom:0.25rem;">Gran contexto + uso de herramientas</h4>
+        <p style="font-size:0.78rem; color:var(--text-muted); margin-bottom:0.55rem;">Excelente relación inteligencia/velocidad para leer muchos documentos y operar todos los días.</p>
+        <div style="font-size:0.79rem; line-height:1.55; border-top:1px solid var(--glass-border); padding-top:0.45rem;">
+          • <strong>Claude Sonnet</strong> · Todo terreno agéntico<br>
+          • <strong>Gemini Flash / Pro</strong> · Ventana 1M+ tokens<br>
+          • <strong>GPT estándar / Terra</strong> · Multiuso
+        </div>
+      </div>
+
+      <div class="glass-card" style="text-align:left; border-top:4px solid var(--primary);">
+        <span class="badge-mini" style="color:#e9d5ff; border-color:rgba(168,85,247,0.45); margin-bottom:0.35rem;">3. Copiloto Estratégico</span>
+        <h4 style="color:#e9d5ff; margin-bottom:0.25rem;">Problemas complejos y decisiones</h4>
+        <p style="font-size:0.78rem; color:var(--text-muted); margin-bottom:0.55rem;">Máximo razonamiento profundo para auditorías, estrategia comercial o coordinar sistemas complejos.</p>
+        <div style="font-size:0.79rem; line-height:1.55; border-top:1px solid var(--glass-border); padding-top:0.45rem;">
+          • <strong>Claude Opus</strong> (Modo extendido)<br>
+          • <strong>Gemini Pro / Ultra</strong> (Deep Think)<br>
+          • <strong>GPT Reasoning / Astra</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight-box green" style="max-width:1080px;">
+      <strong>Regla práctica:</strong> Usá los modelos de <strong>Razonamiento Profundo</strong> para diseñar la estrategia o auditar decisiones críticas, y los de <strong>Gestión Diaria</strong> para tus agentes recurrentes.
+    </div>
+  </section>
+</section>
+
+<!-- 7. BLOQUE 2: SYSTEM PROMPT, PERFIL, CONTEXTO PERSISTENTE Y DISEÑO LÓGICO -->
+<section>
+  <!-- SLIDE 1: SYSTEM PROMPT + PERSISTENCIA DE CONTEXTO -->
+  <section>
+    <span class="glass-pill"><i class="fa-solid fa-sliders"></i> BLOQUE 2 · CONFIGURACIÓN Y CONTEXTO PERMANENTE</span>
+    <h2>El ADN del Agente: <span class="text-gradient">Instrucciones + Contexto</span></h2>
+    <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:0.65rem;">Cómo transformar un modelo genérico en un <strong>copiloto estratégico permanente</strong> que piensa con las reglas de tu empresa.</p>
+
+    <div class="grid-2" style="max-width:1080px; margin:0 auto; text-align:left; align-items:stretch;">
+      <pre class="glass-code" style="margin:0; border-left:4px solid var(--primary);">
+<code style="color:#f8fafc;"><span style="color:#c084fc;"># 1. ROL Y PERFIL EXPERTO</span>
+Sos Director Comercial eCommerce con 12 años en retail.
+Actuás como sparring crítico, directo y orientado a margen.
+
+<span style="color:#22d3ee;"># 2. METODOLOGÍA DE TRABAJO</span>
+Antes de recomendar una acción:
+1) Revisá los archivos de contexto del proyecto.
+2) Si falta un dato clave (costo, stock, plazo), preguntame.
+3) Evaluá impacto en margen neto, caja y operación.
+
+<span style="color:#fbbf24;"># 3. PERSONALIDAD Y FORMATO</span>
+Sin introducciones genéricas. Entregá siempre:
+- Diagnóstico en 3 bullets · Riesgos · Próximo paso accionable.
+
+<span style="color:#4ade80;"># 4. LÍMITES (GUARDRAILS)</span>
+Nunca inventes métricas que no estén en los archivos.</code></pre>
+
+      <div class="glass-card" style="border-top:4px solid var(--secondary); margin:0; display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <h4 style="color:var(--secondary);"><i class="fa-solid fa-folder-tree"></i> Persistencia de Contexto: ¿Qué subir?</h4>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.55rem;">Se carga <strong>una sola vez</strong> en tu Proyecto o Agente para no volver a explicar tu negocio en cada charla:</p>
+          <ul class="premium-list" style="font-size:0.81rem;">
+            <li><i class="fa-solid fa-building" style="color:var(--secondary);"></i> <span><strong>ADN del negocio:</strong> qué vendés, propuesta de valor, ticket promedio y márgenes objetivo.</span></li>
+            <li><i class="fa-solid fa-users" style="color:var(--secondary);"></i> <span><strong>Cliente ideal y objeciones:</strong> segmentos reales, dudas frecuentes y diferenciadores frente a competidores.</span></li>
+            <li><i class="fa-solid fa-bullseye" style="color:var(--secondary);"></i> <span><strong>Prioridades del trimestre:</strong> metas actuales para que cada recomendación esté alineada.</span></li>
+            <li><i class="fa-solid fa-star" style="color:var(--secondary);"></i> <span><strong>Ejemplos ganadores:</strong> 2 o 3 reportes, mails o campañas que te hayan funcionado excelente.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 2: DISEÑO LÓGICO INICIAL EN 5 PASOS -->
+  <section>
+    <span class="glass-pill cyan"><i class="fa-solid fa-sitemap"></i> METODOLOGÍA DE DISEÑO</span>
+    <h2>Cómo diseñar tu <span class="text-gradient">primer agente de negocio</span></h2>
+    <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:0.65rem;">Antes de abrir cualquier herramienta, definí esta estructura lógica en 5 pasos para evitar agentes confusos.</p>
+
+    <div class="flow-diagram" style="max-width:1080px;">
+      <div class="flow-box">
+        <i class="fa-solid fa-crosshairs" style="color:#fda4af;"></i>
+        <strong>1. Dolor único</strong>
+        <span>1 problema concreto (no "hacer marketing")</span>
+      </div>
+      <div class="flow-connector">→</div>
+      <div class="flow-box purple">
+        <i class="fa-solid fa-id-badge" style="color:#e9d5ff;"></i>
+        <strong>2. Rol y Límites</strong>
+        <span>Qué decide y qué tiene prohibido asumir</span>
+      </div>
+      <div class="flow-connector">→</div>
+      <div class="flow-box cyan">
+        <i class="fa-solid fa-file-lines" style="color:var(--secondary);"></i>
+        <strong>3. Entradas fijas</strong>
+        <span>Qué contexto base + qué input le das cada vez</span>
+      </div>
+      <div class="flow-connector">→</div>
+      <div class="flow-box amber">
+        <i class="fa-solid fa-table-columns" style="color:var(--accent);"></i>
+        <strong>4. Salida exacta</strong>
+        <span>Tabla, brief, guion o dashboard ejecutable</span>
+      </div>
+      <div class="flow-connector">→</div>
+      <div class="flow-box green">
+        <i class="fa-solid fa-vial-circle-check" style="color:var(--green);"></i>
+        <strong>5. Test real</strong>
+        <span>3 casos reales antes de compartirlo</span>
+      </div>
+    </div>
+
+    <div class="grid-3" style="max-width:1080px; margin:0.7rem auto 0; text-align:left;">
+      <div class="glass-card" style="border-top:4px solid var(--green); padding:0.85rem 1.05rem;">
+        <strong style="color:#86efac; font-size:0.85rem; display:block; margin-bottom:0.2rem;">✅ Buen alcance inicial</strong>
+        <p style="font-size:0.77rem; color:var(--text-muted); margin:0;">"Analizar promociones bancarias de 3 competidores y proponer nuestra grilla semanal cuidando un margen mínimo del 32%."</p>
+      </div>
+      <div class="glass-card" style="border-top:4px solid var(--red); padding:0.85rem 1.05rem;">
+        <strong style="color:#fda4af; font-size:0.85rem; display:block; margin-bottom:0.2rem;">❌ Alcance demasiado amplio</strong>
+        <p style="font-size:0.77rem; color:var(--text-muted); margin:0;">"Sos mi gerente general de eCommerce: manejá redes, atención al cliente, finanzas, compras y programación."</p>
+      </div>
+      <div class="glass-card" style="border-top:4px solid var(--secondary); padding:0.85rem 1.05rem;">
+        <strong style="color:var(--secondary); font-size:0.85rem; display:block; margin-bottom:0.2rem;">💡 Truco del Copiloto Crítico</strong>
+        <p style="font-size:0.77rem; color:var(--text-muted); margin:0;">Pedile explícitamente en el System Prompt que <strong>cuestione tus supuestos débiles</strong> en lugar de darte siempre la razón.</p>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- 8. BLOQUE 3: CREADORES SIN CÓDIGO + SALTO A SISTEMAS AUTÓNOMOS -->
+<section>
+  <!-- SLIDE 1: HERRAMIENTAS SIN CÓDIGO DEL PROGRAMA -->
+  <section>
+    <span class="glass-pill amber"><i class="fa-solid fa-wand-magic-sparkles"></i> BLOQUE 3 · CREADORES DE AGENTES SIN CÓDIGO</span>
+    <h2>¿Con qué herramienta <span class="text-gradient">construirlo hoy</span>?</h2>
+    <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:0.7rem;">Cuatro plataformas sin código según lo que necesites lograr: pensar, compartir con equipo, prototipar pantallas o delegar tareas.</p>
+
+    <div class="grid-4" style="max-width:1120px; margin:0 auto; text-align:left;">
+      <div class="glass-card" style="border-top:4px solid var(--primary); display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <span class="badge-mini" style="color:#e9d5ff; border-color:rgba(168,85,247,0.45); margin-bottom:0.4rem;">Copiloto Profundo</span>
+          <h4 style="color:#e9d5ff;">Claude Projects</h4>
+          <p style="font-size:0.78rem; color:var(--text-muted); margin:0;">Espacios de trabajo con instrucciones fijas, memoria de documentos amplia y artefactos interactivos.</p>
+        </div>
+        <div style="margin-top:0.65rem; font-size:0.74rem; color:#e9d5ff; border-top:1px solid var(--glass-border); padding-top:0.45rem;">
+          🎯 <strong>Ideal:</strong> Estrategia, análisis y redacción ejecutiva.
+        </div>
+      </div>
+
+      <div class="glass-card" style="border-top:4px solid var(--green); display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <span class="badge-mini" style="color:#86efac; border-color:rgba(34,197,94,0.45); margin-bottom:0.4rem;">Estandarizar Equipo</span>
+          <h4 style="color:#86efac;">Custom GPTs &amp; Gems</h4>
+          <p style="font-size:0.78rem; color:var(--text-muted); margin:0;">Empaquetan rol + archivos + búsqueda web en un link listo para que todo tu equipo trabaje con el mismo criterio.</p>
+        </div>
+        <div style="margin-top:0.65rem; font-size:0.74rem; color:#86efac; border-top:1px solid var(--glass-border); padding-top:0.45rem;">
+          🎯 <strong>Ideal:</strong> Asistentes internos compartibles en 5 min.
+        </div>
+      </div>
+
+      <div class="glass-card" style="border-top:4px solid var(--secondary); display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <span class="badge-mini" style="color:var(--secondary); border-color:rgba(34,211,238,0.45); margin-bottom:0.4rem;">Apps y Tableros</span>
+          <h4 style="color:var(--secondary);">v0 / Antigravity</h4>
+          <p style="font-size:0.78rem; color:var(--text-muted); margin:0;">Convierten una necesidad de negocio descrita en lenguaje natural en una web, calculadora o dashboard publicable.</p>
+        </div>
+        <div style="margin-top:0.65rem; font-size:0.74rem; color:var(--secondary); border-top:1px solid var(--glass-border); padding-top:0.45rem;">
+          🎯 <strong>Ideal:</strong> Prototipos funcionales y herramientas propias.
+        </div>
+      </div>
+
+      <div class="glass-card" style="border-top:4px solid var(--accent); background:linear-gradient(165deg, rgba(245,158,11,0.12) 0%, rgba(13,19,36,0.88) 100%); display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <span class="badge-mini" style="color:#fde68a; border-color:rgba(245,158,11,0.45); margin-bottom:0.4rem;">Acción Autónoma ⭐</span>
+          <h4 style="color:#fde68a;">Claude Cowork</h4>
+          <p style="font-size:0.78rem; color:var(--text-main); margin:0;">Agente sin código que lee carpetas, se conecta a tus apps (MCP), usa Skills y ejecuta <strong>tareas programadas</strong> solo.</p>
+        </div>
+        <div style="margin-top:0.65rem; font-size:0.74rem; color:#fde68a; border-top:1px solid var(--glass-border); padding-top:0.45rem;">
+          🎯 <strong>Ideal:</strong> Empleados digitales que corren en background.
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight-box cyan" style="max-width:1120px;">
+      <strong>Progresión natural sin código:</strong> Validás el criterio en <strong>Claude Projects / Custom GPT</strong> → si necesita pantalla propia lo llevás a <strong>v0</strong> → si necesita ejecutarse solo todos los días lo pasás a <strong>Cowork</strong>.
+    </div>
+  </section>
+
+  <!-- SLIDE 2: SKILLS + MCP (CÓMO ESCALAR SIN MONOPROMPTS) -->
+  <section>
+    <span class="glass-pill"><i class="fa-solid fa-plug"></i> EVOLUCIÓN 2026 · SKILLS + CONECTORES MCP</span>
+    <h2>Cuando el agente necesita <span class="text-gradient">oficio y conexiones</span></h2>
+    <canvas class="clawd-stage" data-scene="mcp" width="660" height="125"></canvas>
+
+    <div class="grid-3" style="max-width:1080px; margin:0 auto;">
+      <div class="glass-card" style="text-align:left; border-top:4px solid var(--primary);">
+        <h4 style="color:#e9d5ff;"><i class="fa-solid fa-book-bookmark" style="color:var(--primary);"></i> 1. Skills (Habilidades)</h4>
+        <p style="font-size:0.83rem; color:var(--text-main); font-weight:700; margin:0 0 0.25rem;">Manuales modulares a demanda</p>
+        <p style="font-size:0.78rem; color:var(--text-muted); margin:0;">En vez de meter 10 tareas distintas en un solo prompt gigante, creás carpetas de procedimientos (<code>SKILL.md</code>) que el agente activa solo cuando corresponden.</p>
+      </div>
+
+      <div class="glass-card" style="text-align:left; border-top:4px solid var(--secondary);">
+        <h4 style="color:var(--secondary);"><i class="fa-solid fa-network-wired"></i> 2. MCP (El USB-C de la IA)</h4>
+        <p style="font-size:0.83rem; color:var(--text-main); font-weight:700; margin:0 0 0.25rem;">Conexión directa a tu trabajo diario</p>
+        <p style="font-size:0.78rem; color:var(--text-muted); margin:0;">Estándar universal de 1 click para conectar tu agente con Google Calendar, Drive, Gmail, Notion, Slack o datos del negocio sin programar APIs.</p>
+      </div>
+
+      <div class="glass-card" style="text-align:left; border-top:4px solid var(--green);">
+        <h4 style="color:#86efac;"><i class="fa-solid fa-user-shield" style="color:var(--green);"></i> 3. Supervisión (HITL)</h4>
+        <p style="font-size:0.83rem; color:var(--text-main); font-weight:700; margin:0 0 0.25rem;">Autonomía con red de seguridad</p>
+        <p style="font-size:0.78rem; color:var(--text-muted); margin:0;">Permisos de solo lectura por defecto: el agente investiga, cruza datos y arma el borrador; un humano aprueba antes de publicar o ejecutar cambios sensibles.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 3: SISTEMAS AUTÓNOMOS Y LAS 4 C -->
+  <section>
+    <span class="glass-pill green"><i class="fa-solid fa-clock-rotate-left"></i> DE ASISTENTE REACTIVO A SISTEMA AUTÓNOMO</span>
+    <h2>La fórmula de <span class="text-gradient-green">Las 4 C</span> para que trabaje solo</h2>
+    <canvas class="clawd-stage" data-scene="autonomy" width="660" height="122"></canvas>
+
+    <div class="flow-diagram" style="max-width:1080px; margin:0.4rem auto 0.65rem;">
+      <div class="flow-box purple">
+        <i class="fa-solid fa-compass" style="color:#e9d5ff;"></i>
+        <strong>1. Contexto</strong>
+        <span>Tu empresa, objetivos, tono y prioridades</span>
+      </div>
+      <div class="flow-connector">→</div>
+      <div class="flow-box cyan">
+        <i class="fa-solid fa-plug" style="color:var(--secondary);"></i>
+        <strong>2. Conexiones</strong>
+        <span>Calendar, Drive, Notion, Slack o Web</span>
+      </div>
+      <div class="flow-connector">→</div>
+      <div class="flow-box amber">
+        <i class="fa-solid fa-book-bookmark" style="color:var(--accent);"></i>
+        <strong>3. Capacidades</strong>
+        <span>Skills claras para hacer cada entregable</span>
+      </div>
+      <div class="flow-connector">→</div>
+      <div class="flow-box green">
+        <i class="fa-solid fa-bell" style="color:var(--green);"></i>
+        <strong>4. Cadencia</strong>
+        <span>Tarea programada (ej. todos los días 7 AM)</span>
+      </div>
+    </div>
+
+    <div class="highlight-box amber" style="max-width:1080px;">
+      <strong>El cambio de mentalidad:</strong> Dejás de abrir un chat en blanco cada mañana. Con <strong>Tareas Programadas</strong> (en <em>Claude Cowork</em>, <em>Perplexity Tasks</em>, <em>Gemini Scheduled Actions</em> o <em>Rutinas Cloud</em>), el sistema corre antes de tu primer café y te espera con el análisis listo.
+    </div>
+  </section>
+</section>
+
+<!-- 9. BLOQUE 4: CASOS DE USO APLICADOS (LISTO PARA INTEGRAR LOS CASOS NUEVOS) -->
+<section>
+  <section>
+    <span class="glass-pill green"><i class="fa-solid fa-bolt"></i> BLOQUE 4 · CASOS DE USO EN VIVO</span>
+    <h2>Ejemplos Reales: <span class="text-gradient-green">Qué hacen y cómo armarlos</span></h2>
+    <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:0.75rem;">Bajamos todo a tierra con casos concretos: desde <strong>Agentes de IA interactivos</strong> hasta <strong>Sistemas Autónomos</strong> corriendo solos.</p>
+
+    <div class="grid-2" style="max-width:1080px; margin:0 auto; text-align:left;">
+      <div class="glass-card" style="border-top:4px solid var(--secondary); padding:1.15rem 1.35rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+          <h4 style="color:var(--secondary); margin:0;"><i class="fa-solid fa-user-astronaut"></i> Parte A · Agentes de IA en Acción</h4>
+          <span class="badge-mini" style="color:var(--secondary); border-color:rgba(34,211,238,0.4);">Copilotos &amp; Ejecución</span>
+        </div>
+        <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:0.6rem;">Qué puede resolver hoy un agente bien configurado cuando le das contexto real, habilidades y herramientas.</p>
+        <ul class="premium-list" style="font-size:0.81rem;">
+          <li><i class="fa-solid fa-check" style="color:var(--secondary);"></i> <strong>Qué vemos:</strong> el problema de negocio, qué herramienta usamos y la receta paso a paso para replicarlo.</li>
+          <li><i class="fa-solid fa-check" style="color:var(--secondary);"></i> <strong>Impacto:</strong> comprimir horas de análisis, armado de entregables o prototipos a pocos minutos.</li>
+        </ul>
+      </div>
+
+      <div class="glass-card" style="border-top:4px solid var(--accent); padding:1.15rem 1.35rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+          <h4 style="color:#fde68a; margin:0;"><i class="fa-solid fa-clock-rotate-left"></i> Parte B · Sistemas Autónomos</h4>
+          <span class="badge-mini" style="color:#fde68a; border-color:rgba(245,158,11,0.45);">Las 4 C · Proactivos</span>
+        </div>
+        <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:0.6rem;">Cómo encadenar contexto, conexiones y cadencia para que tus empleados digitales trabajen en segundo plano.</p>
+        <ul class="premium-list" style="font-size:0.81rem;">
+          <li><i class="fa-solid fa-check" style="color:var(--accent);"></i> <strong>Qué vemos:</strong> disparador automático, qué fuentes consulta, dónde publica el resultado y cómo supervisarlo.</li>
+          <li><i class="fa-solid fa-check" style="color:var(--accent);"></i> <strong>Impacto:</strong> gestión diaria proactiva sin depender de acordarte de pedir cada reporte.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="highlight-box cyan" style="max-width:1080px;">
+      <strong>Estructura de cada caso que veremos ahora:</strong> <code>1. Necesidad de negocio</code> → <code>2. Herramienta y configuración</code> → <code>3. Cómo funciona por dentro</code> → <code>4. Resultado real</code>.
+    </div>
+  </section>
+</section>
+
+<!-- 10. CIERRE: REGLA ANTI-COMPLEJIDAD, CONEXIÓN CON EL PROGRAMA, LINKS Y Q&A -->
+<section>
+  <!-- SLIDE 1: NO SOBRECOMPLEJIZAR + PUENTE A MÓDULOS SIGUIENTES -->
+  <section>
+    <span class="glass-pill green"><i class="fa-solid fa-compass-drafting"></i> CRITERIO PRÁCTICO DE CIERRE</span>
+    <h2>Cómo escalar <span class="text-gradient">sin sobrecomplejizar</span></h2>
+    <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:0.7rem;">Un agente simple que tu equipo usa todos los días vale infinitamente más que un sistema complejo que nadie mantiene.</p>
+
+    <div class="grid-2" style="max-width:1080px; margin:0 auto 0.7rem; text-align:left;">
+      <div class="glass-card" style="border-top:4px solid var(--accent);">
+        <h4 style="color:#fde68a;"><i class="fa-solid fa-traffic-light" style="color:var(--accent);"></i> 3 Reglas contra la sobre-ingeniería</h4>
+        <ul class="premium-list" style="font-size:0.82rem;">
+          <li><i class="fa-solid fa-1" style="color:var(--green);"></i> <span><strong>1 problema = 1 agente enfocado:</strong> empezá por el cuello de botella semanal que más tiempo te consume.</span></li>
+          <li><i class="fa-solid fa-2" style="color:var(--secondary);"></i> <span><strong>No armes multiagente por deporte:</strong> si un solo agente con buen contexto y 1 Skill alcanza, es más rápido, predecible y hasta 15× más barato.</span></li>
+          <li><i class="fa-solid fa-3" style="color:#c084fc;"></i> <span><strong>Iterá con casos reales:</strong> cuando falle, revisá qué dato le faltó en el contexto en vez de agrandar las instrucciones sin control.</span></li>
+        </ul>
+      </div>
+
+      <div class="glass-card" style="border-top:4px solid var(--secondary);">
+        <h4 style="color:var(--secondary);"><i class="fa-solid fa-road"></i> Cómo sigue tu recorrido en el Programa</h4>
+        <ul class="premium-list" style="font-size:0.82rem;">
+          <li><i class="fa-solid fa-circle-check" style="color:var(--green);"></i> <span><strong>Hoy (Módulo 2):</strong> Dominaste la arquitectura de agentes personalizados, copilotos estratégicos y sistemas autónomos sin código.</span></li>
+          <li><i class="fa-solid fa-arrow-right" style="color:var(--secondary);"></i> <span><strong>Próximo paso (Módulo 3):</strong> <em>Automatización Inteligente de Procesos</em> — conectar flujos operativos punta a punta entre sistemas.</span></li>
+          <li><i class="fa-solid fa-comments" style="color:#c084fc;"></i> <span><strong>Más adelante (Módulo 4):</strong> <em>Comercio Conversacional</em> — llevar asistentes inteligentes a la atención y venta con clientes.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="highlight-box green" style="max-width:1080px;">
+      <strong>Tu desafío para esta semana:</strong> Elegí <strong>una decisión o rutina semanal</strong> de tu trabajo y armá la versión 1 de tu Copiloto o Tarea Programada en menos de 30 minutos.
+    </div>
+  </section>
+
+  <!-- SLIDE 2: CAJA DE HERRAMIENTAS DEL MÓDULO 2 -->
+  <section>
+    <span class="glass-pill"><i class="fa-solid fa-bookmark"></i> CAJA DE HERRAMIENTAS</span>
+    <h2>Links clave del <span class="text-gradient">Módulo 2</span></h2>
+    <div class="grid-3" style="max-width:1080px; gap:0.9rem; text-align:left; margin:0 auto;">
+      <div class="glass-card" style="border-top:4px solid var(--accent); margin:0;">
+        <h4 style="color:#fde68a;font-size:0.92rem;"><i class="fa-solid fa-trophy" style="color:var(--accent);"></i> 1. Benchmarks de Modelos</h4>
+        <ul style="list-style:none;padding:0;margin:0;font-size:0.76rem;line-height:1.55;">
+          <li style="border-bottom:1px solid var(--glass-border);padding-bottom:0.45rem;margin-bottom:0.45rem;">
+            <a href="https://artificialanalysis.ai/" target="_blank" style="color:var(--text-main);text-decoration:none;"><i class="fa-solid fa-bolt" style="color:var(--green);margin-right:0.35rem;"></i><strong>Artificial Analysis ↗</strong></a><br><span style="color:var(--text-muted);">Comparativa independiente de IQ, velocidad, precio y agentes</span>
+          </li>
+          <li>
+            <a href="https://lmarena.ai/" target="_blank" style="color:var(--text-main);text-decoration:none;"><i class="fa-solid fa-ranking-star" style="color:var(--accent);margin-right:0.35rem;"></i><strong>LM Arena / Agent Arena ↗</strong></a><br><span style="color:var(--text-muted);"> Batallas a ciegas para probar tu prompt real de negocio</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="glass-card" style="border-top:4px solid var(--secondary); margin:0;">
+        <h4 style="color:var(--secondary);font-size:0.92rem;"><i class="fa-solid fa-wand-magic-sparkles"></i> 2. Creadores Sin Código</h4>
+        <ul style="list-style:none;padding:0;margin:0;font-size:0.76rem;line-height:1.55;">
+          <li style="border-bottom:1px solid var(--glass-border);padding-bottom:0.45rem;margin-bottom:0.45rem;">
+            <a href="https://claude.ai/" target="_blank" style="color:var(--text-main);text-decoration:none;"><i class="fa-solid fa-sparkles" style="color:#e9d5ff;margin-right:0.35rem;"></i><strong>Claude Projects &amp; Cowork ↗</strong></a><br><span style="color:var(--text-muted);">Copilotos con contexto, conectores MCP y tareas programadas</span>
+          </li>
+          <li style="border-bottom:1px solid var(--glass-border);padding-bottom:0.45rem;margin-bottom:0.45rem;">
+            <a href="https://chatgpt.com/gpts" target="_blank" style="color:var(--text-main);text-decoration:none;"><i class="fa-solid fa-robot" style="color:var(--green);margin-right:0.35rem;"></i><strong>Custom GPTs ↗</strong></a> · <a href="https://gemini.google.com/" target="_blank" style="color:var(--text-main);text-decoration:none;"><strong>Google Gems ↗</strong></a><br><span style="color:var(--text-muted);">Asistentes personalizados compartibles con tu equipo</span>
+          </li>
+          <li>
+            <a href="https://v0.dev/" target="_blank" style="color:var(--text-main);text-decoration:none;"><i class="fa-solid fa-window-maximize" style="color:var(--secondary);margin-right:0.35rem;"></i><strong>v0 ↗</strong></a> · <a href="https://antigravity.google/" target="_blank" style="color:var(--text-main);text-decoration:none;"><strong>Antigravity ↗</strong></a><br><span style="color:var(--text-muted);">Crear tableros, interfaces y micro-aplicaciones con IA</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="glass-card" style="border-top:4px solid var(--primary); margin:0;">
+        <h4 style="color:#e9d5ff;font-size:0.92rem;"><i class="fa-solid fa-plug" style="color:var(--primary);"></i> 3. Ecosistema Skills y MCP</h4>
+        <ul style="list-style:none;padding:0;margin:0;font-size:0.76rem;line-height:1.55;">
+          <li style="border-bottom:1px solid var(--glass-border);padding-bottom:0.45rem;margin-bottom:0.45rem;">
+            <a href="https://skills.sh/" target="_blank" style="color:var(--text-main);text-decoration:none;"><i class="fa-solid fa-magnifying-glass" style="color:var(--accent);margin-right:0.35rem;"></i><strong>skills.sh ↗</strong></a> · <a href="https://agentskills.io/home" target="_blank" style="color:var(--text-main);text-decoration:none;"><strong>agentskills.io ↗</strong></a><br><span style="color:var(--text-muted);">Directorio abierto y guía para estructurar habilidades</span>
+          </li>
+          <li>
+            <a href="https://smithery.ai/" target="_blank" style="color:var(--text-main);text-decoration:none;"><i class="fa-solid fa-boxes-stacked" style="color:var(--green);margin-right:0.35rem;"></i><strong>Smithery ↗</strong></a> · <a href="https://modelcontextprotocol.io/" target="_blank" style="color:var(--text-main);text-decoration:none;"><strong>MCP Oficial ↗</strong></a><br><span style="color:var(--text-muted);">Catálogo de conectores universales para tus plataformas</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 3: Q&A Y CIERRE -->
+  <section>
+    <span class="glass-pill cyan"><i class="fa-solid fa-comments"></i> PREGUNTAS, RESPUESTAS Y CASOS</span>
+    <h2>Espacio de <span class="text-gradient">Preguntas y Debate</span></h2>
+    <canvas class="clawd-stage" data-scene="qa" width="660" height="135"></canvas>
+    <div class="grid-3" style="max-width:980px; margin:0.4rem auto 0.8rem;">
+      <div class="glass-card" style="margin:0; border-top:3px solid var(--accent);">
+        <i class="fa-solid fa-trophy" style="font-size:1.35rem; color:var(--accent); margin-bottom:0.3rem; display:block;"></i>
+        <strong style="font-size:0.86rem;">1. Modelos &amp; Benchmarks</strong>
+        <p style="font-size:0.74rem; color:var(--text-muted); margin:0.15rem 0 0;">Artificial Analysis + LM Arena</p>
+      </div>
+      <div class="glass-card" style="margin:0; border-top:3px solid var(--secondary);">
+        <i class="fa-solid fa-sliders" style="font-size:1.35rem; color:var(--secondary); margin-bottom:0.3rem; display:block;"></i>
+        <strong style="font-size:0.86rem;">2. Copilotos &amp; Sin Código</strong>
+        <p style="font-size:0.74rem; color:var(--text-muted); margin:0.15rem 0 0;">Projects · Custom GPTs · v0</p>
+      </div>
+      <div class="glass-card" style="margin:0; border-top:3px solid var(--green);">
+        <i class="fa-solid fa-clock-rotate-left" style="font-size:1.35rem; color:var(--green); margin-bottom:0.3rem; display:block;"></i>
+        <strong style="font-size:0.86rem;">3. Sistemas Autónomos</strong>
+        <p style="font-size:0.74rem; color:var(--text-muted); margin:0.15rem 0 0;">Cowork · Skills · MCP · Las 4 C</p>
+      </div>
+    </div>
+    <h3 class="text-gradient" style="font-size:1.85rem; margin-top:0.35rem;">¡Gracias! A construir.</h3>
+  </section>
+</section>
+
+</div></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.js"></script>
+<script>
+  Reveal.initialize({
+    width: 1240,
+    height: 700,
+    margin: 0.035,
+    minScale: 0.2,
+    maxScale: 2.0,
+    hash: true,
+    transition: 'fade',
+    backgroundTransition: 'slide',
+    controls: true,
+    progress: true,
+    center: true,
+    pdfSeparateFragments: false,
+    pdfMaxPagesPerSlide: 1
+  });
+
+  /* ============================================================================
+   * CLAWD ANIMATION ENGINE (Adapted for Módulo 2: Agentes de IA y Sistemas Autónomos)
+   * Hand-painted watercolour + 12fps boiling ink linework + squash & stretch
+   * ============================================================================ */
+  (function() {
+    const PAL = {
+      paper: '#F3EBDC', ink: '#1E1826', clay: '#D97757', clayDk: '#A84D33',
+      clayLt: '#F2A283', night: '#1F2550', indigo: '#2F3C7A', rose: '#E27A92',
+      ochre: '#E8AA38', sap: '#6E9F58', teal: '#3A9C98', violet: '#7B5CA8',
+      cream: '#FFF5E2', sky: '#8EC3E6', green: '#22c55e', cyan: '#00f2fe', red: '#ef4444'
+    };
+    const BOIL = 12;
+
+    function hash(n) {
+      const x = Math.sin(n * 127.1 + 311.7) * 43758.5453;
+      return x - Math.floor(x);
+    }
+
+    function boilOff(seed, t, amp) {
+      const frame = Math.floor(t * BOIL);
+      return (hash(seed + frame * 17.3) - 0.5) * 2 * amp;
+    }
+
+    function sketchLine(ctx, x1, y1, x2, y2, seed, t, col, lw) {
+      ctx.save();
+      ctx.strokeStyle = col || PAL.ink;
+      ctx.lineWidth = lw || 2.2;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      const mx = (x1 + x2) / 2 + boilOff(seed + 1, t, 1.4);
+      const my = (y1 + y2) / 2 + boilOff(seed + 2, t, 1.4);
+      ctx.moveTo(x1 + boilOff(seed, t, 0.9), y1 + boilOff(seed + 3, t, 0.9));
+      ctx.quadraticCurveTo(mx, my, x2 + boilOff(seed + 4, t, 0.9), y2 + boilOff(seed + 5, t, 0.9));
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function paintedRect(ctx, x, y, w, h, fillCol, strokeCol, seed, t, radius) {
+      const r = radius || 3;
+      ctx.save();
+      ctx.fillStyle = fillCol;
+      ctx.globalAlpha = 0.25;
+      ctx.beginPath();
+      ctx.roundRect(x - 2 + boilOff(seed, t, 1.1), y + 2 + boilOff(seed + 1, t, 1.1), w + 4, h + 2, r + 2);
+      ctx.fill();
+      ctx.globalAlpha = 0.94;
+      ctx.beginPath();
+      ctx.roundRect(x + boilOff(seed + 2, t, 0.8), y + boilOff(seed + 3, t, 0.8), w, h, r);
+      ctx.fill();
+      if (strokeCol !== null) {
+        ctx.globalAlpha = 0.92;
+        ctx.strokeStyle = strokeCol || PAL.ink;
+        ctx.lineWidth = 2.1;
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    function drawStageBadge(ctx, cx, cy, w, h, label, sub, accentCol, seed, t) {
+      ctx.save();
+      paintedRect(ctx, cx - w / 2, cy - h / 2, w, h, 'rgba(20, 16, 40, 0.9)', accentCol, seed, t, 8);
+      ctx.fillStyle = '#fff';
+      ctx.font = '700 12px Outfit, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(label, cx, cy - (sub ? 3 : -4));
+      if (sub) {
+        ctx.fillStyle = accentCol;
+        ctx.font = '600 10px Plus Jakarta Sans, Inter, sans-serif';
+        ctx.fillText(sub, cx, cy + 12);
+      }
+      ctx.restore();
+    }
+
+    function drawEmote(ctx, x, y, type, t) {
+      const bob = Math.sin(t * 4.2) * 3.5;
+      const ey = y + bob;
+      ctx.save();
+      ctx.fillStyle = 'rgba(255, 245, 226, 0.16)';
+      ctx.beginPath();
+      ctx.arc(x + boilOff(91, t, 1), ey, 16, 0, Math.PI * 2);
+      ctx.fill();
+
+      if (type === '!') {
+        paintedRect(ctx, x - 3, ey - 12, 6, 13, PAL.ochre, PAL.ink, 101, t, 2);
+        paintedRect(ctx, x - 3, ey + 4, 6, 5, PAL.ochre, PAL.ink, 102, t, 2);
+      } else if (type === '?') {
+        ctx.strokeStyle = PAL.indigo;
+        ctx.lineWidth = 3.2;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.arc(x, ey - 6, 6, Math.PI * 0.85, Math.PI * 0.15, false);
+        ctx.lineTo(x, ey + 2);
+        ctx.stroke();
+        ctx.fillStyle = PAL.indigo;
+        ctx.beginPath();
+        ctx.arc(x, ey + 8, 2.5, 0, Math.PI * 2);
+        ctx.fill();
+      } else if (type === 'bulb') {
+        ctx.fillStyle = PAL.ochre;
+        ctx.beginPath();
+        ctx.arc(x, ey - 3, 9, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = PAL.ink;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        paintedRect(ctx, x - 4, ey + 5, 8, 5, PAL.cream, PAL.ink, 108, t, 1);
+        for (let i = 0; i < 5; i++) {
+          const a = -Math.PI * 0.9 + (i / 4) * Math.PI * 0.8;
+          sketchLine(ctx, x + Math.cos(a) * 12, ey - 3 + Math.sin(a) * 12, x + Math.cos(a) * 17, ey - 3 + Math.sin(a) * 17, 110 + i, t, PAL.ochre, 2);
+        }
+      } else if (type === 'heart') {
+        ctx.fillStyle = PAL.rose;
+        ctx.beginPath();
+        ctx.arc(x - 4, ey - 3, 5, 0, Math.PI * 2);
+        ctx.arc(x + 4, ey - 3, 5, 0, Math.PI * 2);
+        ctx.moveTo(x - 9, ey - 1);
+        ctx.lineTo(x, ey + 9);
+        ctx.lineTo(x + 9, ey - 1);
+        ctx.fill();
+      } else if (type === 'sparkle') {
+        for (let i = 0; i < 3; i++) {
+          const sx = x + (i - 1) * 12;
+          const sy = ey + (i % 2 === 0 ? -3 : 4);
+          sketchLine(ctx, sx - 4, sy, sx + 4, sy, 130 + i, t, PAL.ochre, 2);
+          sketchLine(ctx, sx, sy - 4, sx, sy + 4, 140 + i, t, PAL.ochre, 2);
+        }
+      }
+      ctx.restore();
+    }
+
+    function drawClawd(ctx, x, y, scale, t, opts) {
+      opts = opts || {};
+      const u = 5.6 * (scale || 1);
+      const sx = opts.sx || 1;
+      const sy = opts.sy || 1;
+      const bob = opts.bob || 0;
+      const tilt = opts.tilt || 0;
+      const walk = opts.walk || 0;
+      const lookX = (opts.lookX || 0) * u * 0.35;
+      const lookY = (opts.lookY || 0) * u * 0.25;
+      const eyeMode = opts.eyes || 'open';
+      const mouth = opts.mouth || 'none';
+      const armL = opts.armL || 0;
+      const armR = opts.armR || 0;
+      const hat = opts.hat || null;
+      const bodyCol = opts.color || PAL.clay;
+      const dkCol = opts.dkColor || PAL.clayDk;
+      const ltCol = opts.ltColor || PAL.clayLt;
+
+      ctx.save();
+      ctx.translate(x, y + bob);
+      ctx.rotate(tilt);
+      ctx.scale(sx, sy);
+
+      const bw = 10 * u;
+      const bh = 6 * u;
+      const bx = -bw / 2;
+      const by = -bh - 2 * u;
+
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.32)';
+      ctx.beginPath();
+      ctx.ellipse(0, 2, bw * 0.52 / sx, 4.2, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      const legOffsets = [-3.6 * u, -1.5 * u, 1.5 * u, 3.6 * u];
+      for (let i = 0; i < 4; i++) {
+        const phase = walk > 0 ? Math.sin(t * 9 + i * 1.6) * walk * 3.5 : 0;
+        const lx = legOffsets[i] - 0.55 * u;
+        const ly = -2.1 * u + Math.min(0, phase);
+        const lh = 2.1 * u - Math.min(0, phase * 0.5);
+        paintedRect(ctx, lx, ly, 1.1 * u, lh, i === 1 || i === 2 ? dkCol : bodyCol, PAL.ink, 10 + i * 5, t, 2);
+      }
+
+      ctx.save();
+      ctx.translate(bx - 0.3 * u, by + 2.8 * u);
+      ctx.rotate(armL);
+      paintedRect(ctx, -1.2 * u, -0.6 * u, 1.4 * u, 1.3 * u, bodyCol, PAL.ink, 31, t, 2);
+      ctx.restore();
+
+      ctx.save();
+      ctx.translate(bx + bw + 0.3 * u, by + 2.8 * u);
+      ctx.rotate(armR);
+      paintedRect(ctx, -0.2 * u, -0.6 * u, 1.4 * u, 1.3 * u, bodyCol, PAL.ink, 35, t, 2);
+      ctx.restore();
+
+      paintedRect(ctx, bx, by, bw, bh, bodyCol, PAL.ink, 40, t, 4);
+
+      ctx.fillStyle = ltCol;
+      ctx.globalAlpha = 0.5;
+      ctx.fillRect(bx + 0.6 * u, by + 0.35 * u, bw - 1.2 * u, 0.85 * u);
+      ctx.fillStyle = dkCol;
+      ctx.globalAlpha = 0.38;
+      ctx.fillRect(bx + 0.5 * u, by + bh - 0.95 * u, bw - 1.0 * u, 0.75 * u);
+      ctx.globalAlpha = 1;
+
+      const autoBlink = (t % 3.4) > 3.26;
+      const actualEye = (eyeMode === 'open' && autoBlink) ? 'blink' : eyeMode;
+      const exL = -2.1 * u + lookX;
+      const exR = 2.1 * u + lookX;
+      const ey = by + 2.45 * u + lookY;
+
+      if (actualEye === 'blink') {
+        sketchLine(ctx, exL - 0.55 * u, ey, exL + 0.55 * u, ey, 51, t, PAL.ink, 2.5);
+        sketchLine(ctx, exR - 0.55 * u, ey, exR + 0.55 * u, ey, 52, t, PAL.ink, 2.5);
+      } else if (actualEye === 'happy') {
+        ctx.strokeStyle = PAL.ink;
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.arc(exL, ey + 2, 0.55 * u, Math.PI, 0);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(exR, ey + 2, 0.55 * u, Math.PI, 0);
+        ctx.stroke();
+      } else if (actualEye === 'wide') {
+        paintedRect(ctx, exL - 0.55 * u, ey - 0.85 * u, 1.1 * u, 1.65 * u, PAL.ink, null, 55, t, 2);
+        paintedRect(ctx, exR - 0.55 * u, ey - 0.85 * u, 1.1 * u, 1.65 * u, PAL.ink, null, 56, t, 2);
+        ctx.fillStyle = PAL.cream;
+        ctx.fillRect(exL - 0.2 * u, ey - 0.55 * u, 0.4 * u, 0.4 * u);
+        ctx.fillRect(exR - 0.2 * u, ey - 0.55 * u, 0.4 * u, 0.4 * u);
+      } else {
+        paintedRect(ctx, exL - 0.42 * u, ey - 0.7 * u, 0.84 * u, 1.4 * u, PAL.ink, null, 57, t, 1.5);
+        paintedRect(ctx, exR - 0.42 * u, ey - 0.7 * u, 0.84 * u, 1.4 * u, PAL.ink, null, 58, t, 1.5);
+      }
+
+      const my = by + 4.35 * u + lookY * 0.5;
+      if (mouth === 'smile') {
+        ctx.strokeStyle = PAL.ink;
+        ctx.lineWidth = 2.2;
+        ctx.beginPath();
+        ctx.arc(lookX * 0.6, my - 2, 0.75 * u, 0.15 * Math.PI, 0.85 * Math.PI);
+        ctx.stroke();
+      } else if (mouth === 'o') {
+        paintedRect(ctx, lookX * 0.6 - 0.45 * u, my - 0.45 * u, 0.9 * u, 0.95 * u, PAL.ink, null, 61, t, 3);
+      }
+
+      if (hat === 'cap') {
+        paintedRect(ctx, -3.2 * u, by - 1.3 * u, 6.4 * u, 1.5 * u, PAL.sap, PAL.ink, 70, t, 3);
+        paintedRect(ctx, 0, by - 0.5 * u, 4.8 * u, 0.65 * u, PAL.sap, PAL.ink, 71, t, 2);
+      } else if (hat === 'headset') {
+        ctx.strokeStyle = PAL.cyan;
+        ctx.lineWidth = 2.6;
+        ctx.beginPath();
+        ctx.arc(0, by + 1.2 * u, 5.3 * u, Math.PI * 1.05, Math.PI * 1.95);
+        ctx.stroke();
+        paintedRect(ctx, bx - 0.9 * u, by + 1.2 * u, 1.0 * u, 2.0 * u, PAL.cyan, PAL.ink, 73, t, 2);
+      }
+
+      ctx.restore();
+    }
+
+    const SCENES = {
+      'hero': function(ctx, w, h, t) {
+        const groundY = h - 16;
+        sketchLine(ctx, 40, groundY, w - 40, groundY, 1, t, 'rgba(30,24,38,0.28)', 2);
+        const pulse1 = (t * 0.9) % 1;
+        const pulse2 = ((t * 0.9) + 0.5) % 1;
+        sketchLine(ctx, 160, groundY - 34, w / 2 - 42, groundY - 34, 2, t, PAL.teal, 2.2);
+        sketchLine(ctx, w / 2 + 42, groundY - 34, w - 160, groundY - 34, 3, t, PAL.ochre, 2.2);
+        ctx.fillStyle = PAL.teal;
+        ctx.beginPath();
+        ctx.arc(160 + (w / 2 - 202) * pulse1, groundY - 34, 4.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = PAL.sap;
+        ctx.beginPath();
+        ctx.arc(w / 2 + 42 + (w / 2 - 202) * pulse2, groundY - 34, 4.5, 0, Math.PI * 2);
+        ctx.fill();
+
+        drawStageBadge(ctx, 104, groundY - 34, 148, 40, '🧠 Copilotos & Agentes', 'Projects · GPTs · v0', PAL.cyan, 11, t);
+        drawStageBadge(ctx, w - 104, groundY - 34, 152, 40, '⚡ Sistemas Autónomos', 'Cowork · Skills · MCP', PAL.green, 12, t);
+
+        const cycle = (t % 2.6) / 2.6;
+        let bob = 0, sx = 1, sy = 1, eyes = 'open', mouth = 'smile';
+        if (cycle < 0.15) {
+          const p = cycle / 0.15;
+          sx = 1 + 0.16 * Math.sin(p * Math.PI);
+          sy = 1 - 0.14 * Math.sin(p * Math.PI);
+        } else if (cycle < 0.55) {
+          const p = (cycle - 0.15) / 0.4;
+          bob = -Math.sin(p * Math.PI) * 16;
+          sx = 0.92; sy = 1.09; eyes = 'happy'; mouth = 'o';
+        }
+        const look = Math.sin(t * 1.8);
+        drawClawd(ctx, w / 2, groundY, 1.0, t, {
+          bob, sx, sy, lookX: look, eyes, mouth,
+          armL: -0.4 + Math.sin(t * 4) * 0.25,
+          armR: 0.4 - Math.sin(t * 4) * 0.25
+        });
+        drawEmote(ctx, w / 2, groundY - 74 + bob, 'bulb', t);
+      },
+
+      'anatomy': function(ctx, w, h, t) {
+        const groundY = h - 14;
+        const step = Math.floor((t * 0.75) % 3);
+        const targets = [w * 0.18, w * 0.5, w * 0.82];
+        const lookDir = step === 0 ? -1 : (step === 2 ? 1 : 0);
+
+        drawStageBadge(ctx, targets[0], 28, 142, 36, '1. Perfil & Contexto', 'System Prompt · ADN', step === 0 ? PAL.ochre : '#94a3b8', 31, t);
+        drawStageBadge(ctx, targets[1], 22, 138, 36, '2. Cerebro LLM', 'Razona y planifica', step === 1 ? PAL.cyan : '#94a3b8', 32, t);
+        drawStageBadge(ctx, targets[2], 28, 142, 36, '3. Manos & Cadencia', 'Tools · MCP · Rutinas', step === 2 ? PAL.green : '#94a3b8', 33, t);
+
+        drawClawd(ctx, w / 2 + lookDir * 22, groundY, 0.92, t, {
+          lookX: lookDir, lookY: -0.7,
+          walk: 0.4,
+          eyes: step === 1 ? 'wide' : 'open',
+          mouth: 'smile',
+          armL: step === 0 ? -0.8 : 0.1,
+          armR: step === 2 ? 0.8 : -0.1
+        });
+        drawEmote(ctx, targets[step], 58, '!', t);
+      },
+
+      'benchmarks': function(ctx, w, h, t) {
+        const groundY = h - 14;
+        sketchLine(ctx, 40, groundY, w - 40, groundY, 20, t, 'rgba(30,24,38,0.25)', 2);
+        const side = Math.sin(t * 1.9);
+        const lookDir = side > 0 ? 0.85 : -0.85;
+
+        drawStageBadge(ctx, 125, groundY - 36, 168, 42, '📊 Artificial Analysis', 'IQ · Velocidad · Costo', side < 0 ? PAL.green : '#94a3b8', 21, t);
+        drawStageBadge(ctx, w - 125, groundY - 36, 168, 42, '🏆 LM Arena', 'Batalla A/B a ciegas', side > 0 ? PAL.ochre : '#94a3b8', 22, t);
+
+        drawClawd(ctx, w / 2 + side * 14, groundY, 0.94, t, {
+          lookX: lookDir,
+          walk: 0.3,
+          eyes: 'wide',
+          mouth: 'smile',
+          armL: side < 0 ? -0.75 : 0.15,
+          armR: side > 0 ? 0.75 : -0.15
+        });
+        drawEmote(ctx, w / 2 + side * 14, groundY - 70, 'sparkle', t);
+      },
+
+      'mcp': function(ctx, w, h, t) {
+        const groundY = h - 16;
+        const step = Math.floor((t * 0.9) % 3);
+
+        drawStageBadge(ctx, 105, groundY - 38, 128, 42, '📘 Skill', 'Cómo trabajar', PAL.violet, 61, t);
+
+        drawClawd(ctx, w * 0.44, groundY, 0.93, t, {
+          lookX: 0.8,
+          walk: 0.3,
+          eyes: 'happy', mouth: 'smile',
+          armR: 0.5 + Math.sin(t * 5) * 0.25
+        });
+        drawEmote(ctx, w * 0.44, groundY - 72, 'bulb', t);
+
+        const hubX = w * 0.60;
+        const hubY = groundY - 36;
+        const toolY = [24, groundY - 36, groundY - 4];
+        const toolLabels = ['📅 Calendar', '📂 Drive / Notion', '💬 Slack / Mail'];
+        for (let i = 0; i < 3; i++) {
+          const active = i === step;
+          sketchLine(ctx, hubX, hubY, w - 135, toolY[i], 62 + i, t, active ? PAL.sap : 'rgba(30,24,38,0.28)', active ? 2.8 : 1.5);
+          drawStageBadge(ctx, w - 78, toolY[i], 114, 26, toolLabels[i], '', active ? PAL.green : '#94a3b8', 66 + i, t);
+        }
+      },
+
+      'autonomy': function(ctx, w, h, t) {
+        const groundY = h - 14;
+        sketchLine(ctx, 40, groundY, w - 40, groundY, 80, t, 'rgba(30,24,38,0.25)', 2);
+
+        drawStageBadge(ctx, 108, groundY - 36, 142, 40, '⏰ Tarea 07:00 AM', 'Corre mientras dormís', PAL.ochre, 81, t);
+
+        const p = (t * 0.65) % 1;
+        sketchLine(ctx, 184, groundY - 36, w * 0.46, groundY - 36, 82, t, PAL.ochre, 2.2);
+        ctx.fillStyle = PAL.ochre;
+        ctx.beginPath();
+        ctx.arc(184 + (w * 0.46 - 184) * p, groundY - 36, 4.5, 0, Math.PI * 2);
+        ctx.fill();
+
+        drawClawd(ctx, w * 0.56, groundY, 0.92, t, {
+          hat: 'cap',
+          walk: 0.65,
+          lookX: 0.85,
+          eyes: 'happy',
+          mouth: 'smile',
+          armL: Math.sin(t * 7) * 0.4,
+          armR: -Math.sin(t * 7) * 0.4
+        });
+        drawEmote(ctx, w * 0.56, groundY - 70, 'sparkle', t);
+
+        drawStageBadge(ctx, w - 108, groundY - 36, 146, 40, '☕ Brief esperando', 'Listo para decidir', PAL.green, 83, t);
+      },
+
+      'qa': function(ctx, w, h, t) {
+        const groundY = h - 16;
+        const bounce = Math.abs(Math.sin(t * 3.8)) * 12;
+        drawClawd(ctx, w / 2, groundY, 1.08, t, {
+          bob: -bounce,
+          sx: bounce > 6 ? 0.94 : 1.05,
+          sy: bounce > 6 ? 1.07 : 0.95,
+          eyes: 'happy', mouth: 'smile',
+          armL: -0.75 + Math.sin(t * 6) * 0.35,
+          armR: 0.75 - Math.sin(t * 6) * 0.35
+        });
+        drawEmote(ctx, w / 2 - 55, groundY - 68, '?', t);
+        drawEmote(ctx, w / 2, groundY - 88 - bounce * 0.5, 'heart', t);
+        drawEmote(ctx, w / 2 + 55, groundY - 68, 'bulb', t);
+      }
+    };
+
+    const canvases = Array.from(document.querySelectorAll('canvas.clawd-stage'));
+    function renderLoop(now) {
+      const t = now * 0.001;
+      for (let i = 0; i < canvases.length; i++) {
+        const c = canvases[i];
+        const sec = c.closest('section');
+        if (sec && !sec.classList.contains('present') && c._renderedOnce) continue;
+        c._renderedOnce = true;
+        const sceneName = c.getAttribute('data-scene') || 'hero';
+        const fn = SCENES[sceneName];
+        if (!fn) continue;
+        const ctx = c.getContext('2d');
+        ctx.clearRect(0, 0, c.width, c.height);
+        fn(ctx, c.width, c.height, t || 1.2);
+      }
+      requestAnimationFrame(renderLoop);
+    }
+    requestAnimationFrame(renderLoop);
+  })();
+</script>
+</body>
+</html>
