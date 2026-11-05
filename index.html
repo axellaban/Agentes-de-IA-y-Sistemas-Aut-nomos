@@ -358,10 +358,55 @@
       opacity: 0.85;
     }
 
+    /* Best Practices Maxim Grid */
+    .maxim-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.8rem;
+      max-width: 1140px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .maxim-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
+      padding: 0.78rem 1rem;
+      box-shadow: 0 10px 26px -8px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.09);
+      transition: transform 0.22s ease, border-color 0.22s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 0.3rem;
+    }
+    .maxim-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(34, 211, 238, 0.42);
+    }
+    .maxim-head {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .maxim-quote {
+      font-size: 0.79rem;
+      line-height: 1.38;
+      color: #e2e8f0;
+      margin: 0;
+      font-style: italic;
+    }
+
     @media (max-width: 768px) {
       .pyramid-wrapper { flex-direction: column; gap: 1rem; }
       .pyramid-container { width: 100%; }
       .flow-diagram { flex-wrap: wrap; }
+      .maxim-grid { grid-template-columns: 1fr; }
     }
 
     /* PDF / Print support */
@@ -400,13 +445,13 @@
     <span class="badge-mini" style="color:#fde68a; border-color:rgba(245,158,11,0.45); background:rgba(245,158,11,0.1); padding:0.28rem 0.72rem; font-size:0.76rem;"><i class="fa-solid fa-trophy"></i> Benchmarks (AA · LM Arena)</span>
     <span class="badge-mini" style="color:var(--secondary); border-color:rgba(34,211,238,0.4); background:rgba(34,211,238,0.08); padding:0.28rem 0.72rem; font-size:0.76rem;"><i class="fa-solid fa-sliders"></i> System Prompt &amp; Contexto</span>
     <span class="badge-mini" style="color:#e9d5ff; border-color:rgba(168,85,247,0.45); background:rgba(168,85,247,0.1); padding:0.28rem 0.72rem; font-size:0.76rem;"><i class="fa-solid fa-compass"></i> Copiloto Estratégico</span>
-    <span class="badge-mini" style="color:#86efac; border-color:rgba(34,197,94,0.45); background:rgba(34,197,94,0.1); padding:0.28rem 0.72rem; font-size:0.76rem;"><i class="fa-solid fa-wand-magic-sparkles"></i> Custom GPTs · Claude Projects · v0</span>
-    <span class="badge-mini" style="color:#f8fafc; border-color:rgba(255,255,255,0.28); background:rgba(255,255,255,0.07); padding:0.28rem 0.72rem; font-size:0.76rem;"><i class="fa-solid fa-clock-rotate-left"></i> Cowork · Skills · MCP</span>
+    <span class="badge-mini" style="color:#86efac; border-color:rgba(34,197,94,0.45); background:rgba(34,197,94,0.1); padding:0.28rem 0.72rem; font-size:0.76rem;"><i class="fa-solid fa-terminal"></i> Claude Code · ChatGPT/Codex · Antigravity</span>
+    <span class="badge-mini" style="color:#f8fafc; border-color:rgba(255,255,255,0.28); background:rgba(255,255,255,0.07); padding:0.28rem 0.72rem; font-size:0.76rem;"><i class="fa-solid fa-plug"></i> Skills · MCP · Buenas Prácticas</span>
   </div>
   <div class="glass-card" style="display:inline-flex; align-items:center; gap:1.1rem; padding:0.45rem 1.25rem; border-radius:999px; font-size:0.82rem; color:var(--text-muted); font-weight:600; margin-top:0.1rem;">
     <span><i class="fa-regular fa-clock" style="color:var(--secondary); margin-right:0.35rem;"></i> Online en vivo · eLeaderClass AI+</span>
     <span style="opacity:0.3;">|</span>
-    <span><i class="fa-solid fa-bolt" style="color:var(--accent); margin-right:0.35rem;"></i> Sin código · Orientado a negocio</span>
+    <span><i class="fa-solid fa-bolt" style="color:var(--accent); margin-right:0.35rem;"></i> 100% práctico · Orientado a negocio</span>
     <span style="opacity:0.3;">|</span>
     <span><i class="fa-solid fa-layer-group" style="color:var(--green); margin-right:0.35rem;"></i> Casos reales paso a paso</span>
   </div>
@@ -492,10 +537,10 @@
           <span class="glass-pill amber" style="font-size:0.66rem; margin:0;">BLOQUE 3</span>
           <span style="font-family:'Outfit'; font-size:1.3rem; font-weight:800; color:rgba(245,158,11,0.35);">03</span>
         </div>
-        <h4 style="font-size:1.02rem; color:#fde68a;">Sin Código y Autonomía</h4>
-        <p style="font-size:0.8rem; color:var(--text-muted); margin:0;"><strong>Custom GPTs, Claude Projects, Gems y v0</strong> + el salto a sistemas autónomos con <strong>Skills, MCP y Claude Cowork</strong>.</p>
+        <h4 style="font-size:1.02rem; color:#fde68a;">Construcción y Autonomía</h4>
+        <p style="font-size:0.8rem; color:var(--text-muted); margin:0;"><strong>Claude Code, ChatGPT / Codex y Antigravity</strong> + el salto a sistemas autónomos con <strong>Skills, MCP y Las 4 C</strong>.</p>
       </div>
-      <div style="margin-top:0.65rem; font-size:0.73rem; color:var(--accent); font-weight:600;"><i class="fa-solid fa-wand-magic-sparkles"></i> Herramientas reales</div>
+      <div style="margin-top:0.65rem; font-size:0.73rem; color:var(--accent); font-weight:600;"><i class="fa-solid fa-terminal"></i> Las 3 herramientas clave</div>
     </div>
 
     <div class="glass-card" style="text-align:left; border-top:4px solid var(--green); display:flex; flex-direction:column; justify-content:space-between;">
@@ -504,14 +549,14 @@
           <span class="glass-pill green" style="font-size:0.66rem; margin:0;">BLOQUE 4</span>
           <span style="font-family:'Outfit'; font-size:1.3rem; font-weight:800; color:rgba(34,197,94,0.35);">04</span>
         </div>
-        <h4 style="font-size:1.02rem; color:#86efac;">Casos de Uso en Vivo</h4>
-        <p style="font-size:0.8rem; color:var(--text-muted); margin:0;">Ejemplos aplicados para acelerar decisiones y gestionar el trabajo diario con <strong>Agentes de IA</strong> y <strong>Sistemas Autónomos</strong>.</p>
+        <h4 style="font-size:1.02rem; color:#86efac;">Casos y Buenas Prácticas</h4>
+        <p style="font-size:0.8rem; color:var(--text-muted); margin:0;">Ejemplos reales de <strong>Agentes de IA</strong> y <strong>Sistemas Autónomos</strong> + principios de trinchera para escalar simple.</p>
       </div>
       <div style="margin-top:0.65rem; font-size:0.73rem; color:var(--green); font-weight:600;"><i class="fa-solid fa-bolt"></i> Qué hacen y cómo armarlos</div>
     </div>
   </div>
   <div class="highlight-box cyan" style="max-width:1100px; text-align:center;">
-    <i class="fa-solid fa-bullseye" style="color:var(--secondary); margin-right:0.4rem;"></i> <strong>Regla de la clase:</strong> cero sobre-ingeniería. Empezamos sin código y sumamos autonomía solo donde genera impacto real.
+    <i class="fa-solid fa-bullseye" style="color:var(--secondary); margin-right:0.4rem;"></i> <strong>Regla de la clase:</strong> cero sobre-ingeniería. Empezamos simple (Ley de Gall) y sumamos autonomía solo donde genera impacto real.
   </div>
 </section>
 
@@ -671,7 +716,7 @@
     </div>
 
     <div class="highlight-box amber" style="max-width:1160px; margin-top:0.2rem;">
-      <strong>Aplicación directa hoy:</strong> Si tu equipo ya usa ChatGPT o Gemini, arrancá creando tu primer agente ahí (<strong>Custom GPT / Gem</strong>). Pasá a <strong>Claude Projects / Cowork</strong> cuando necesites mayor profundidad estratégica o tareas autónomas.
+      <strong>Aplicación directa hoy:</strong> En vez de saltar entre 10 herramientas por moda, elegí tu entorno principal (<strong>Claude Code</strong>, <strong>ChatGPT / Codex</strong> o <strong>Antigravity</strong>), cargale el contexto de tu negocio y dominalo a fondo.
     </div>
   </section>
 </section>
@@ -704,14 +749,14 @@
       <tr>
         <td style="color:var(--text-muted); font-weight:700;">Cuándo se activa</td>
         <td style="text-align:center;">Cuando escribís</td>
-        <td style="text-align:center;">Cuando abrís el Proyecto / GPT</td>
+        <td style="text-align:center;">Cuando abrís tu espacio de trabajo</td>
         <td style="text-align:center; color:#86efac; font-weight:600;">A pedido tuyo <strong>o programado solo (24/7)</strong></td>
       </tr>
       <tr style="background:rgba(255,255,255,0.025);">
         <td style="color:var(--text-muted); font-weight:700;">Dónde vive hoy</td>
-        <td style="text-align:center; font-size:0.79rem; color:var(--text-muted);">ChatGPT / Claude / Gemini estándar</td>
-        <td style="text-align:center; font-size:0.79rem; color:var(--secondary);">Claude Projects · Custom GPTs · Gems</td>
-        <td style="text-align:center; font-size:0.79rem; color:#fde68a;">Claude Cowork · Rutinas Cloud · MCP</td>
+        <td style="text-align:center; font-size:0.79rem; color:var(--text-muted);">ChatGPT / Claude / Gemini (chat vacío)</td>
+        <td style="text-align:center; font-size:0.79rem; color:var(--secondary);">Proyectos y espacios con contexto fijo</td>
+        <td style="text-align:center; font-size:0.79rem; color:#fde68a;">Claude Code · ChatGPT / Codex · Antigravity</td>
       </tr>
       <tr>
         <td style="color:var(--text-muted); font-weight:700;">Caso típico</td>
@@ -952,62 +997,51 @@ Nunca inventes métricas que no estén en los archivos.</code></pre>
   </section>
 </section>
 
-<!-- 8. BLOQUE 3: CREADORES SIN CÓDIGO + SALTO A SISTEMAS AUTÓNOMOS -->
+<!-- 8. BLOQUE 3: HERRAMIENTAS DE CONSTRUCCIÓN + SALTO A SISTEMAS AUTÓNOMOS -->
 <section>
-  <!-- SLIDE 1: HERRAMIENTAS SIN CÓDIGO DEL PROGRAMA -->
+  <!-- SLIDE 1: LAS 3 HERRAMIENTAS PARA CONSTRUIR HOY -->
   <section>
-    <span class="glass-pill amber"><i class="fa-solid fa-wand-magic-sparkles"></i> BLOQUE 3 · CREADORES DE AGENTES SIN CÓDIGO</span>
+    <span class="glass-pill amber"><i class="fa-solid fa-terminal"></i> BLOQUE 3 · CONSTRUIR AGENTES Y SISTEMAS</span>
     <h2>¿Con qué herramienta <span class="text-gradient">construirlo hoy</span>?</h2>
-    <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:0.7rem;">Cuatro plataformas sin código según lo que necesites lograr: pensar, compartir con equipo, prototipar pantallas o delegar tareas.</p>
+    <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:0.75rem;">Tres entornos líderes para crear agentes, herramientas y sistemas autónomos hablando en lenguaje natural.</p>
 
-    <div class="grid-4" style="max-width:1120px; margin:0 auto; text-align:left;">
-      <div class="glass-card" style="border-top:4px solid var(--primary); display:flex; flex-direction:column; justify-content:space-between;">
+    <div class="grid-3" style="max-width:1080px; margin:0 auto; text-align:left;">
+      <div class="glass-card" style="border-top:4px solid var(--accent); display:flex; flex-direction:column; justify-content:space-between;">
         <div>
-          <span class="badge-mini" style="color:#e9d5ff; border-color:rgba(168,85,247,0.45); margin-bottom:0.4rem;">Copiloto Profundo</span>
-          <h4 style="color:#e9d5ff;">Claude Projects</h4>
-          <p style="font-size:0.78rem; color:var(--text-muted); margin:0;">Espacios de trabajo con instrucciones fijas, memoria de documentos amplia y artefactos interactivos.</p>
+          <span class="badge-mini" style="color:#fde68a; border-color:rgba(245,158,11,0.45); margin-bottom:0.45rem;">Anthropic · Terminal &amp; App</span>
+          <h4 style="color:#fde68a; font-size:1.15rem;"><i class="fa-solid fa-terminal" style="margin-right:0.35rem;"></i> Claude Code</h4>
+          <p style="font-size:0.81rem; color:var(--text-muted); margin:0;">Agente de ejecución profunda que lee tus carpetas y proyectos, corre comandos, conecta MCPs/Skills y resuelve tareas largas de punta a punta.</p>
         </div>
-        <div style="margin-top:0.65rem; font-size:0.74rem; color:#e9d5ff; border-top:1px solid var(--glass-border); padding-top:0.45rem;">
-          🎯 <strong>Ideal:</strong> Estrategia, análisis y redacción ejecutiva.
+        <div style="margin-top:0.75rem; font-size:0.76rem; color:#fde68a; border-top:1px solid var(--glass-border); padding-top:0.5rem;">
+          🎯 <strong>Fuerte en:</strong> Delegación profunda, archivos locales y automatización real.
         </div>
       </div>
 
       <div class="glass-card" style="border-top:4px solid var(--green); display:flex; flex-direction:column; justify-content:space-between;">
         <div>
-          <span class="badge-mini" style="color:#86efac; border-color:rgba(34,197,94,0.45); margin-bottom:0.4rem;">Estandarizar Equipo</span>
-          <h4 style="color:#86efac;">Custom GPTs &amp; Gems</h4>
-          <p style="font-size:0.78rem; color:var(--text-muted); margin:0;">Empaquetan rol + archivos + búsqueda web en un link listo para que todo tu equipo trabaje con el mismo criterio.</p>
+          <span class="badge-mini" style="color:#86efac; border-color:rgba(34,197,94,0.45); margin-bottom:0.45rem;">OpenAI · Chat + Cloud Sandbox</span>
+          <h4 style="color:#86efac; font-size:1.15rem;"><i class="fa-solid fa-cloud" style="margin-right:0.35rem;"></i> ChatGPT / Codex</h4>
+          <p style="font-size:0.81rem; color:var(--text-muted); margin:0;">Combina tu copiloto diario con contexto en ChatGPT y <strong>Codex</strong> (web, app y CLI) para delegar múltiples tareas en paralelo en la nube.</p>
         </div>
-        <div style="margin-top:0.65rem; font-size:0.74rem; color:#86efac; border-top:1px solid var(--glass-border); padding-top:0.45rem;">
-          🎯 <strong>Ideal:</strong> Asistentes internos compartibles en 5 min.
+        <div style="margin-top:0.75rem; font-size:0.76rem; color:#86efac; border-top:1px solid var(--glass-border); padding-top:0.5rem;">
+          🎯 <strong>Fuerte en:</strong> Copiloto cotidiano + agentes corriendo en segundo plano.
         </div>
       </div>
 
       <div class="glass-card" style="border-top:4px solid var(--secondary); display:flex; flex-direction:column; justify-content:space-between;">
         <div>
-          <span class="badge-mini" style="color:var(--secondary); border-color:rgba(34,211,238,0.45); margin-bottom:0.4rem;">Apps y Tableros</span>
-          <h4 style="color:var(--secondary);">v0 / Antigravity</h4>
-          <p style="font-size:0.78rem; color:var(--text-muted); margin:0;">Convierten una necesidad de negocio descrita en lenguaje natural en una web, calculadora o dashboard publicable.</p>
+          <span class="badge-mini" style="color:var(--secondary); border-color:rgba(34,211,238,0.45); margin-bottom:0.45rem;">Google · Plataforma Agent-First</span>
+          <h4 style="color:var(--secondary); font-size:1.15rem;"><i class="fa-solid fa-rocket" style="margin-right:0.35rem;"></i> Antigravity</h4>
+          <p style="font-size:0.81rem; color:var(--text-muted); margin:0;">Centro de mando visual para orquestar agentes y subagentes, con navegador integrado que prueba lo que construye, artefactos y multimodelo.</p>
         </div>
-        <div style="margin-top:0.65rem; font-size:0.74rem; color:var(--secondary); border-top:1px solid var(--glass-border); padding-top:0.45rem;">
-          🎯 <strong>Ideal:</strong> Prototipos funcionales y herramientas propias.
-        </div>
-      </div>
-
-      <div class="glass-card" style="border-top:4px solid var(--accent); background:linear-gradient(165deg, rgba(245,158,11,0.12) 0%, rgba(13,19,36,0.88) 100%); display:flex; flex-direction:column; justify-content:space-between;">
-        <div>
-          <span class="badge-mini" style="color:#fde68a; border-color:rgba(245,158,11,0.45); margin-bottom:0.4rem;">Acción Autónoma ⭐</span>
-          <h4 style="color:#fde68a;">Claude Cowork</h4>
-          <p style="font-size:0.78rem; color:var(--text-main); margin:0;">Agente sin código que lee carpetas, se conecta a tus apps (MCP), usa Skills y ejecuta <strong>tareas programadas</strong> solo.</p>
-        </div>
-        <div style="margin-top:0.65rem; font-size:0.74rem; color:#fde68a; border-top:1px solid var(--glass-border); padding-top:0.45rem;">
-          🎯 <strong>Ideal:</strong> Empleados digitales que corren en background.
+        <div style="margin-top:0.75rem; font-size:0.76rem; color:var(--secondary); border-top:1px solid var(--glass-border); padding-top:0.5rem;">
+          🎯 <strong>Fuerte en:</strong> Crear apps, tableros y sistemas verificando todo en vivo.
         </div>
       </div>
     </div>
 
-    <div class="highlight-box cyan" style="max-width:1120px;">
-      <strong>Progresión natural sin código:</strong> Validás el criterio en <strong>Claude Projects / Custom GPT</strong> → si necesita pantalla propia lo llevás a <strong>v0</strong> → si necesita ejecutarse solo todos los días lo pasás a <strong>Cowork</strong>.
+    <div class="highlight-box cyan" style="max-width:1080px; margin-top:0.75rem;">
+      <strong>Denominador común:</strong> Las 3 entienden contexto persistente, cargan <strong>Skills</strong> y se conectan a tus apps por <strong>MCP</strong>. Elegí una sola como base y construí ahí.
     </div>
   </section>
 
@@ -1071,7 +1105,7 @@ Nunca inventes métricas que no estén en los archivos.</code></pre>
     </div>
 
     <div class="highlight-box amber" style="max-width:1080px;">
-      <strong>El cambio de mentalidad:</strong> Dejás de abrir un chat en blanco cada mañana. Con <strong>Tareas Programadas</strong> (en <em>Claude Cowork</em>, <em>Perplexity Tasks</em>, <em>Gemini Scheduled Actions</em> o <em>Rutinas Cloud</em>), el sistema corre antes de tu primer café y te espera con el análisis listo.
+      <strong>El cambio de mentalidad:</strong> Dejás de abrir un chat en blanco cada mañana. Con <strong>tareas programadas y rutinas autónomas</strong>, el sistema corre antes de tu primer café y te espera con el análisis listo para decidir.
     </div>
   </section>
 </section>
@@ -1115,40 +1149,63 @@ Nunca inventes métricas que no estén en los archivos.</code></pre>
   </section>
 </section>
 
-<!-- 10. CIERRE: REGLA ANTI-COMPLEJIDAD, CONEXIÓN CON EL PROGRAMA, LINKS Y Q&A -->
+<!-- 10. BUENAS PRÁCTICAS (MODO FRASE EN UN SOLO SLIDE) -->
 <section>
-  <!-- SLIDE 1: NO SOBRECOMPLEJIZAR + PUENTE A MÓDULOS SIGUIENTES -->
-  <section>
-    <span class="glass-pill green"><i class="fa-solid fa-compass-drafting"></i> CRITERIO PRÁCTICO DE CIERRE</span>
-    <h2>Cómo escalar <span class="text-gradient">sin sobrecomplejizar</span></h2>
-    <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:0.7rem;">Un agente simple que tu equipo usa todos los días vale infinitamente más que un sistema complejo que nadie mantiene.</p>
+  <span class="glass-pill green"><i class="fa-solid fa-compass-drafting"></i> BUENAS PRÁCTICAS</span>
+  <h2>Principios para construir <span class="text-gradient">sin sobrecomplejizar</span></h2>
+  <p style="color:var(--text-muted); font-size:0.86rem; margin-bottom:0.75rem;">Nueve máximas de trinchera para diseñar agentes de IA y sistemas autónomos que funcionen en el mundo real.</p>
 
-    <div class="grid-2" style="max-width:1080px; margin:0 auto 0.7rem; text-align:left;">
-      <div class="glass-card" style="border-top:4px solid var(--accent);">
-        <h4 style="color:#fde68a;"><i class="fa-solid fa-traffic-light" style="color:var(--accent);"></i> 3 Reglas contra la sobre-ingeniería</h4>
-        <ul class="premium-list" style="font-size:0.82rem;">
-          <li><i class="fa-solid fa-1" style="color:var(--green);"></i> <span><strong>1 problema = 1 agente enfocado:</strong> empezá por el cuello de botella semanal que más tiempo te consume.</span></li>
-          <li><i class="fa-solid fa-2" style="color:var(--secondary);"></i> <span><strong>No armes multiagente por deporte:</strong> si un solo agente con buen contexto y 1 Skill alcanza, es más rápido, predecible y hasta 15× más barato.</span></li>
-          <li><i class="fa-solid fa-3" style="color:#c084fc;"></i> <span><strong>Iterá con casos reales:</strong> cuando falle, revisá qué dato le faltó en el contexto en vez de agrandar las instrucciones sin control.</span></li>
-        </ul>
-      </div>
-
-      <div class="glass-card" style="border-top:4px solid var(--secondary);">
-        <h4 style="color:var(--secondary);"><i class="fa-solid fa-road"></i> Cómo sigue tu recorrido en el Programa</h4>
-        <ul class="premium-list" style="font-size:0.82rem;">
-          <li><i class="fa-solid fa-circle-check" style="color:var(--green);"></i> <span><strong>Hoy (Módulo 2):</strong> Dominaste la arquitectura de agentes personalizados, copilotos estratégicos y sistemas autónomos sin código.</span></li>
-          <li><i class="fa-solid fa-arrow-right" style="color:var(--secondary);"></i> <span><strong>Próximo paso (Módulo 3):</strong> <em>Automatización Inteligente de Procesos</em> — conectar flujos operativos punta a punta entre sistemas.</span></li>
-          <li><i class="fa-solid fa-comments" style="color:#c084fc;"></i> <span><strong>Más adelante (Módulo 4):</strong> <em>Comercio Conversacional</em> — llevar asistentes inteligentes a la atención y venta con clientes.</span></li>
-        </ul>
-      </div>
+  <div class="maxim-grid">
+    <div class="maxim-card" style="border-left:3px solid var(--accent);">
+      <div class="maxim-head" style="color:#fde68a;"><i class="fa-solid fa-seedling"></i> 1. Ley de Gall</div>
+      <p class="maxim-quote">“Todo sistema complejo que funciona evolucionó sí o sí de un sistema simple que funcionaba.”</p>
     </div>
 
-    <div class="highlight-box green" style="max-width:1080px;">
-      <strong>Tu desafío para esta semana:</strong> Elegí <strong>una decisión o rutina semanal</strong> de tu trabajo y armá la versión 1 de tu Copiloto o Tarea Programada en menos de 30 minutos.
+    <div class="maxim-card" style="border-left:3px solid var(--secondary);">
+      <div class="maxim-head" style="color:var(--secondary);"><i class="fa-solid fa-arrows-spin"></i> 2. Loops y Objetivos</div>
+      <p class="maxim-quote">“No le des pasos a ciegas: dale un objetivo medible y un loop para verificar su propio resultado.”</p>
     </div>
-  </section>
 
-  <!-- SLIDE 2: CAJA DE HERRAMIENTAS DEL MÓDULO 2 -->
+    <div class="maxim-card" style="border-left:3px solid var(--green);">
+      <div class="maxim-head" style="color:#86efac;"><i class="fa-solid fa-code-branch"></i> 3. Hombros de Gigantes</div>
+      <p class="maxim-quote">“No reinventes la rueda: subite a repos open source, Skills y conectores MCP que ya resolvió la comunidad.”</p>
+    </div>
+
+    <div class="maxim-card" style="border-left:3px solid var(--primary);">
+      <div class="maxim-head" style="color:#e9d5ff;"><i class="fa-solid fa-folder-open"></i> 4. Contexto &gt; Prompt eterno</div>
+      <p class="maxim-quote">“Cuando el agente falla, casi nunca falta más prompt: falta mejor contexto.”</p>
+    </div>
+
+    <div class="maxim-card" style="border-left:3px solid var(--secondary);">
+      <div class="maxim-head" style="color:var(--secondary);"><i class="fa-solid fa-gears"></i> 5. Regla fija primero</div>
+      <p class="maxim-quote">“Si algo se resuelve con una regla simple y determinística, no uses un agente para adivinarlo.”</p>
+    </div>
+
+    <div class="maxim-card" style="border-left:3px solid var(--accent);">
+      <div class="maxim-head" style="color:#fde68a;"><i class="fa-solid fa-bullseye"></i> 6. Una sola responsabilidad</div>
+      <p class="maxim-quote">“Un agente simple y enfocado le gana a cinco agentes complejos chocándose entre sí.”</p>
+    </div>
+
+    <div class="maxim-card" style="border-left:3px solid var(--primary);">
+      <div class="maxim-head" style="color:#e9d5ff;"><i class="fa-solid fa-map"></i> 7. Planificar antes de correr</div>
+      <p class="maxim-quote">“Diez minutos alineando el plan ahorran horas corrigiendo un agente en la dirección equivocada.”</p>
+    </div>
+
+    <div class="maxim-card" style="border-left:3px solid var(--red);">
+      <div class="maxim-head" style="color:#fda4af;"><i class="fa-solid fa-shield-halved"></i> 8. Radio de impacto mínimo</div>
+      <p class="maxim-quote">“Autonomía total para leer y preparar borradores; humano en el loop para lo irreversible.”</p>
+    </div>
+
+    <div class="maxim-card" style="border-left:3px solid var(--green);">
+      <div class="maxim-head" style="color:#86efac;"><i class="fa-solid fa-vial-circle-check"></i> 9. Evidencia &gt; Intuición</div>
+      <p class="maxim-quote">“No te enamores de una demo linda: probá al agente contra tus casos reales más difíciles.”</p>
+    </div>
+  </div>
+</section>
+
+<!-- 11. CIERRE: CAJA DE HERRAMIENTAS Y Q&A -->
+<section>
+  <!-- SLIDE 1: CAJA DE HERRAMIENTAS DEL MÓDULO 2 -->
   <section>
     <span class="glass-pill"><i class="fa-solid fa-bookmark"></i> CAJA DE HERRAMIENTAS</span>
     <h2>Links clave del <span class="text-gradient">Módulo 2</span></h2>
@@ -1160,41 +1217,41 @@ Nunca inventes métricas que no estén en los archivos.</code></pre>
             <a href="https://artificialanalysis.ai/" target="_blank" style="color:var(--text-main);text-decoration:none;"><i class="fa-solid fa-bolt" style="color:var(--green);margin-right:0.35rem;"></i><strong>Artificial Analysis ↗</strong></a><br><span style="color:var(--text-muted);">Comparativa independiente de IQ, velocidad, precio y agentes</span>
           </li>
           <li>
-            <a href="https://lmarena.ai/" target="_blank" style="color:var(--text-main);text-decoration:none;"><i class="fa-solid fa-ranking-star" style="color:var(--accent);margin-right:0.35rem;"></i><strong>LM Arena / Agent Arena ↗</strong></a><br><span style="color:var(--text-muted);"> Batallas a ciegas para probar tu prompt real de negocio</span>
+            <a href="https://lmarena.ai/" target="_blank" style="color:var(--text-main);text-decoration:none;"><i class="fa-solid fa-ranking-star" style="color:var(--accent);margin-right:0.35rem;"></i><strong>LM Arena / Agent Arena ↗</strong></a><br><span style="color:var(--text-muted);">Batallas a ciegas para probar tu prompt real de negocio</span>
           </li>
         </ul>
       </div>
 
       <div class="glass-card" style="border-top:4px solid var(--secondary); margin:0;">
-        <h4 style="color:var(--secondary);font-size:0.92rem;"><i class="fa-solid fa-wand-magic-sparkles"></i> 2. Creadores Sin Código</h4>
+        <h4 style="color:var(--secondary);font-size:0.92rem;"><i class="fa-solid fa-terminal"></i> 2. Dónde Construir Hoy</h4>
         <ul style="list-style:none;padding:0;margin:0;font-size:0.76rem;line-height:1.55;">
           <li style="border-bottom:1px solid var(--glass-border);padding-bottom:0.45rem;margin-bottom:0.45rem;">
-            <a href="https://claude.ai/" target="_blank" style="color:var(--text-main);text-decoration:none;"><i class="fa-solid fa-sparkles" style="color:#e9d5ff;margin-right:0.35rem;"></i><strong>Claude Projects &amp; Cowork ↗</strong></a><br><span style="color:var(--text-muted);">Copilotos con contexto, conectores MCP y tareas programadas</span>
+            <a href="https://claude.ai/code" target="_blank" style="color:var(--text-main);text-decoration:none;"><i class="fa-solid fa-terminal" style="color:#fde68a;margin-right:0.35rem;"></i><strong>Claude Code ↗</strong></a><br><span style="color:var(--text-muted);">Agente profundo de Anthropic en terminal y escritorio</span>
           </li>
           <li style="border-bottom:1px solid var(--glass-border);padding-bottom:0.45rem;margin-bottom:0.45rem;">
-            <a href="https://chatgpt.com/gpts" target="_blank" style="color:var(--text-main);text-decoration:none;"><i class="fa-solid fa-robot" style="color:var(--green);margin-right:0.35rem;"></i><strong>Custom GPTs ↗</strong></a> · <a href="https://gemini.google.com/" target="_blank" style="color:var(--text-main);text-decoration:none;"><strong>Google Gems ↗</strong></a><br><span style="color:var(--text-muted);">Asistentes personalizados compartibles con tu equipo</span>
+            <a href="https://chatgpt.com/codex" target="_blank" style="color:var(--text-main);text-decoration:none;"><i class="fa-solid fa-cloud" style="color:var(--green);margin-right:0.35rem;"></i><strong>ChatGPT / Codex ↗</strong></a><br><span style="color:var(--text-muted);">Copiloto diario + agente autónomo en sandbox cloud y CLI</span>
           </li>
           <li>
-            <a href="https://v0.dev/" target="_blank" style="color:var(--text-main);text-decoration:none;"><i class="fa-solid fa-window-maximize" style="color:var(--secondary);margin-right:0.35rem;"></i><strong>v0 ↗</strong></a> · <a href="https://antigravity.google/" target="_blank" style="color:var(--text-main);text-decoration:none;"><strong>Antigravity ↗</strong></a><br><span style="color:var(--text-muted);">Crear tableros, interfaces y micro-aplicaciones con IA</span>
+            <a href="https://antigravity.google/" target="_blank" style="color:var(--text-main);text-decoration:none;"><i class="fa-solid fa-rocket" style="color:var(--secondary);margin-right:0.35rem;"></i><strong>Antigravity ↗</strong></a><br><span style="color:var(--text-muted);">Plataforma agent-first de Google con navegador integrado</span>
           </li>
         </ul>
       </div>
 
       <div class="glass-card" style="border-top:4px solid var(--primary); margin:0;">
-        <h4 style="color:#e9d5ff;font-size:0.92rem;"><i class="fa-solid fa-plug" style="color:var(--primary);"></i> 3. Ecosistema Skills y MCP</h4>
+        <h4 style="color:#e9d5ff;font-size:0.92rem;"><i class="fa-solid fa-plug" style="color:var(--primary);"></i> 3. Open Source: Skills &amp; MCP</h4>
         <ul style="list-style:none;padding:0;margin:0;font-size:0.76rem;line-height:1.55;">
           <li style="border-bottom:1px solid var(--glass-border);padding-bottom:0.45rem;margin-bottom:0.45rem;">
-            <a href="https://skills.sh/" target="_blank" style="color:var(--text-main);text-decoration:none;"><i class="fa-solid fa-magnifying-glass" style="color:var(--accent);margin-right:0.35rem;"></i><strong>skills.sh ↗</strong></a> · <a href="https://agentskills.io/home" target="_blank" style="color:var(--text-main);text-decoration:none;"><strong>agentskills.io ↗</strong></a><br><span style="color:var(--text-muted);">Directorio abierto y guía para estructurar habilidades</span>
+            <a href="https://skills.sh/" target="_blank" style="color:var(--text-main);text-decoration:none;"><i class="fa-solid fa-magnifying-glass" style="color:var(--accent);margin-right:0.35rem;"></i><strong>skills.sh ↗</strong></a> · <a href="https://agentskills.io/home" target="_blank" style="color:var(--text-main);text-decoration:none;"><strong>agentskills.io ↗</strong></a><br><span style="color:var(--text-muted);">Directorio abierto y estándar para reutilizar habilidades</span>
           </li>
           <li>
-            <a href="https://smithery.ai/" target="_blank" style="color:var(--text-main);text-decoration:none;"><i class="fa-solid fa-boxes-stacked" style="color:var(--green);margin-right:0.35rem;"></i><strong>Smithery ↗</strong></a> · <a href="https://modelcontextprotocol.io/" target="_blank" style="color:var(--text-main);text-decoration:none;"><strong>MCP Oficial ↗</strong></a><br><span style="color:var(--text-muted);">Catálogo de conectores universales para tus plataformas</span>
+            <a href="https://smithery.ai/" target="_blank" style="color:var(--text-main);text-decoration:none;"><i class="fa-solid fa-boxes-stacked" style="color:var(--green);margin-right:0.35rem;"></i><strong>Smithery ↗</strong></a> · <a href="https://modelcontextprotocol.io/" target="_blank" style="color:var(--text-main);text-decoration:none;"><strong>MCP Oficial ↗</strong></a><br><span style="color:var(--text-muted);">Catálogo de conectores abiertos listos para usar</span>
           </li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- SLIDE 3: Q&A Y CIERRE -->
+  <!-- SLIDE 2: Q&A Y CIERRE -->
   <section>
     <span class="glass-pill cyan"><i class="fa-solid fa-comments"></i> PREGUNTAS, RESPUESTAS Y CASOS</span>
     <h2>Espacio de <span class="text-gradient">Preguntas y Debate</span></h2>
@@ -1206,14 +1263,14 @@ Nunca inventes métricas que no estén en los archivos.</code></pre>
         <p style="font-size:0.74rem; color:var(--text-muted); margin:0.15rem 0 0;">Artificial Analysis + LM Arena</p>
       </div>
       <div class="glass-card" style="margin:0; border-top:3px solid var(--secondary);">
-        <i class="fa-solid fa-sliders" style="font-size:1.35rem; color:var(--secondary); margin-bottom:0.3rem; display:block;"></i>
-        <strong style="font-size:0.86rem;">2. Copilotos &amp; Sin Código</strong>
-        <p style="font-size:0.74rem; color:var(--text-muted); margin:0.15rem 0 0;">Projects · Custom GPTs · v0</p>
+        <i class="fa-solid fa-terminal" style="font-size:1.35rem; color:var(--secondary); margin-bottom:0.3rem; display:block;"></i>
+        <strong style="font-size:0.86rem;">2. Herramientas Hoy</strong>
+        <p style="font-size:0.74rem; color:var(--text-muted); margin:0.15rem 0 0;">Claude Code · ChatGPT/Codex · Antigravity</p>
       </div>
       <div class="glass-card" style="margin:0; border-top:3px solid var(--green);">
-        <i class="fa-solid fa-clock-rotate-left" style="font-size:1.35rem; color:var(--green); margin-bottom:0.3rem; display:block;"></i>
-        <strong style="font-size:0.86rem;">3. Sistemas Autónomos</strong>
-        <p style="font-size:0.74rem; color:var(--text-muted); margin:0.15rem 0 0;">Cowork · Skills · MCP · Las 4 C</p>
+        <i class="fa-solid fa-compass-drafting" style="font-size:1.35rem; color:var(--green); margin-bottom:0.3rem; display:block;"></i>
+        <strong style="font-size:0.86rem;">3. Buenas Prácticas</strong>
+        <p style="font-size:0.74rem; color:var(--text-muted); margin:0.15rem 0 0;">Ley de Gall · Loops · Open Source</p>
       </div>
     </div>
     <h3 class="text-gradient" style="font-size:1.85rem; margin-top:0.35rem;">¡Gracias! A construir.</h3>
@@ -1496,19 +1553,19 @@ Nunca inventes métricas que no estén en los archivos.</code></pre>
         sketchLine(ctx, 40, groundY, w - 40, groundY, 1, t, 'rgba(30,24,38,0.28)', 2);
         const pulse1 = (t * 0.9) % 1;
         const pulse2 = ((t * 0.9) + 0.5) % 1;
-        sketchLine(ctx, 160, groundY - 34, w / 2 - 42, groundY - 34, 2, t, PAL.teal, 2.2);
-        sketchLine(ctx, w / 2 + 42, groundY - 34, w - 160, groundY - 34, 3, t, PAL.ochre, 2.2);
+        sketchLine(ctx, 200, groundY - 34, w / 2 - 42, groundY - 34, 2, t, PAL.teal, 2.2);
+        sketchLine(ctx, w / 2 + 42, groundY - 34, w - 200, groundY - 34, 3, t, PAL.ochre, 2.2);
         ctx.fillStyle = PAL.teal;
         ctx.beginPath();
-        ctx.arc(160 + (w / 2 - 202) * pulse1, groundY - 34, 4.5, 0, Math.PI * 2);
+        ctx.arc(200 + (w / 2 - 242) * pulse1, groundY - 34, 4.5, 0, Math.PI * 2);
         ctx.fill();
         ctx.fillStyle = PAL.sap;
         ctx.beginPath();
-        ctx.arc(w / 2 + 42 + (w / 2 - 202) * pulse2, groundY - 34, 4.5, 0, Math.PI * 2);
+        ctx.arc(w / 2 + 42 + (w / 2 - 242) * pulse2, groundY - 34, 4.5, 0, Math.PI * 2);
         ctx.fill();
 
-        drawStageBadge(ctx, 104, groundY - 34, 148, 40, '🧠 Copilotos & Agentes', 'Projects · GPTs · v0', PAL.cyan, 11, t);
-        drawStageBadge(ctx, w - 104, groundY - 34, 152, 40, '⚡ Sistemas Autónomos', 'Cowork · Skills · MCP', PAL.green, 12, t);
+        drawStageBadge(ctx, 108, groundY - 34, 180, 40, '🛠️ Agentes de IA', 'Claude Code · Codex · Antigravity', PAL.cyan, 11, t);
+        drawStageBadge(ctx, w - 108, groundY - 34, 180, 40, '⚡ Sistemas Autónomos', 'Skills · MCP · Loops', PAL.green, 12, t);
 
         const cycle = (t % 2.6) / 2.6;
         let bob = 0, sx = 1, sy = 1, eyes = 'open', mouth = 'smile';
