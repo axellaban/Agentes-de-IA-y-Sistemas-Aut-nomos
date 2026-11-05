@@ -358,55 +358,62 @@
       opacity: 0.85;
     }
 
-    /* Best Practices Maxim Grid */
-    .maxim-grid {
+    /* Clean Editorial Manifesto (Buenas Prácticas) */
+    .manifesto-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.8rem;
-      max-width: 1140px;
-      margin: 0 auto;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 3.4rem;
+      row-gap: 0;
+      max-width: 1080px;
+      margin: 0.7rem auto 0;
       text-align: left;
     }
-    .maxim-card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--glass-border);
-      border-radius: 14px;
-      padding: 0.78rem 1rem;
-      box-shadow: 0 10px 26px -8px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.09);
-      transition: transform 0.22s ease, border-color 0.22s ease;
+    .manifesto-item {
       display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      gap: 0.3rem;
+      align-items: baseline;
+      gap: 0.95rem;
+      padding: 0.85rem 0.2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      transition: border-color 0.2s ease, transform 0.2s ease;
     }
-    .maxim-card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(34, 211, 238, 0.42);
+    .manifesto-item:nth-last-child(-n+2) {
+      border-bottom: none;
     }
-    .maxim-head {
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
+    .manifesto-item:hover {
+      border-bottom-color: rgba(34, 211, 238, 0.35);
+      transform: translateX(3px);
+    }
+    .manifesto-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--secondary);
+      opacity: 0.85;
+      flex-shrink: 0;
+      letter-spacing: 0.02em;
+    }
+    .manifesto-title {
       font-family: 'Outfit', sans-serif;
-      font-size: 0.86rem;
+      font-size: 1.02rem;
       font-weight: 700;
-      letter-spacing: -0.01em;
+      color: #f8fafc;
+      letter-spacing: -0.015em;
+      display: block;
+      margin-bottom: 0.14rem;
+      line-height: 1.25;
     }
-    .maxim-quote {
-      font-size: 0.79rem;
+    .manifesto-phrase {
+      font-size: 0.82rem;
       line-height: 1.38;
-      color: #e2e8f0;
-      margin: 0;
-      font-style: italic;
+      color: #94a3b8;
+      display: block;
     }
 
     @media (max-width: 768px) {
       .pyramid-wrapper { flex-direction: column; gap: 1rem; }
       .pyramid-container { width: 100%; }
       .flow-diagram { flex-wrap: wrap; }
-      .maxim-grid { grid-template-columns: 1fr; }
+      .manifesto-grid { grid-template-columns: 1fr; }
     }
 
     /* PDF / Print support */
@@ -525,10 +532,10 @@
           <span class="glass-pill" style="font-size:0.66rem; margin:0;">BLOQUE 2</span>
           <span style="font-family:'Outfit'; font-size:1.3rem; font-weight:800; color:rgba(168,85,247,0.35);">02</span>
         </div>
-        <h4 style="font-size:1.02rem; color:#e9d5ff;">Copiloto y Diseño Lógico</h4>
-        <p style="font-size:0.8rem; color:var(--text-muted); margin:0;"><strong>System Prompt</strong>, perfiles, personalidad, persistencia de contexto y estructura lógica para resolver problemas de negocio.</p>
+        <h4 style="font-size:1.02rem; color:#e9d5ff;">El Arnés y el Contexto</h4>
+        <p style="font-size:0.8rem; color:var(--text-muted); margin:0;">Por qué el <strong>Arnés (Harness)</strong> y el <strong>contexto</strong> importan más que el LLM, System Prompt y diseño lógico.</p>
       </div>
-      <div style="margin-top:0.65rem; font-size:0.73rem; color:#e9d5ff; font-weight:600;"><i class="fa-solid fa-sliders"></i> Copiloto estratégico</div>
+      <div style="margin-top:0.65rem; font-size:0.73rem; color:#e9d5ff; font-weight:600;"><i class="fa-solid fa-sliders"></i> Contexto &gt; Modelo</div>
     </div>
 
     <div class="glass-card" style="text-align:left; border-top:4px solid var(--accent); display:flex; flex-direction:column; justify-content:space-between;">
@@ -900,6 +907,69 @@
   </section>
 </section>
 
+<!-- 6B. EL ARNÉS (AGENT HARNESS): EL CONTEXTO IMPORTA MÁS QUE EL LLM -->
+<section>
+  <span class="glass-pill cyan"><i class="fa-solid fa-car-side"></i> CONCEPTO CLAVE · EL ARNÉS (AGENT HARNESS)</span>
+  <h2>El <span class="text-gradient">Contexto y el Arnés</span> importan más que el LLM</h2>
+  <p style="color:var(--text-muted); font-size:0.92rem; margin-bottom:0.85rem;">El LLM es solo el <strong>motor suelto</strong>. El Arnés es <strong>el auto entero</strong> que lo hace llegar a destino.</p>
+
+  <div style="display:grid; grid-template-columns:0.85fr 1.35fr; gap:1.3rem; max-width:1080px; margin:0 auto; align-items:stretch;">
+    <!-- Columna Izquierda: LLM suelto -->
+    <div class="glass-card" style="margin:0; text-align:left; border-top:3px solid rgba(244,63,94,0.65); display:flex; flex-direction:column; justify-content:space-between; padding:1.25rem 1.4rem;">
+      <div>
+        <span class="badge-mini" style="color:#fda4af; border-color:rgba(244,63,94,0.4); margin-bottom:0.65rem;">❌ Solo el Motor (20%)</span>
+        <h3 style="font-size:1.35rem; margin:0 0 0.45rem; color:#f8fafc;">El mejor LLM en vacío</h3>
+        <p style="font-size:0.83rem; color:var(--text-muted); margin:0 0 0.85rem;">Podés pagar el modelo #1 del ranking, pero sin arnés ni contexto:</p>
+        <ul class="premium-list" style="font-size:0.81rem;">
+          <li><i class="fa-solid fa-xmark" style="color:var(--red);"></i> <span>Adivina tus márgenes, procesos y criterios.</span></li>
+          <li><i class="fa-solid fa-xmark" style="color:var(--red);"></i> <span>No puede leer tus archivos ni accionar herramientas.</span></li>
+          <li><i class="fa-solid fa-xmark" style="color:var(--red);"></i> <span>No tiene forma de comprobar si se equivocó.</span></li>
+        </ul>
+      </div>
+      <div style="margin-top:0.8rem; padding-top:0.6rem; border-top:1px solid rgba(255,255,255,0.08); font-size:0.78rem; color:#fda4af; font-weight:600;">
+        Cambiar de modelo rara vez arregla un mal contexto.
+      </div>
+    </div>
+
+    <!-- Columna Derecha: El Arnés envolviendo al LLM -->
+    <div class="glass-card" style="margin:0; text-align:left; border:1.5px solid rgba(34,211,238,0.45); background:linear-gradient(165deg, rgba(34,211,238,0.09) 0%, rgba(13,19,36,0.92) 100%); padding:1.25rem 1.45rem; display:flex; flex-direction:column; justify-content:space-between;">
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.65rem;">
+          <span class="badge-mini" style="color:#86efac; border-color:rgba(34,197,94,0.45);">✅ Motor + Arnés (80% del éxito)</span>
+          <span style="font-family:'JetBrains Mono', monospace; font-size:0.74rem; color:var(--secondary);">EL ARNÉS = TODO LO QUE RODEA AL LLM</span>
+        </div>
+
+        <!-- Diagrama visual limpio de capas -->
+        <div style="border:1.5px dashed rgba(34,211,238,0.45); border-radius:14px; padding:0.9rem 1rem; background:rgba(7,11,22,0.55);">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.65rem; margin-bottom:0.65rem;">
+            <div style="background:rgba(168,85,247,0.13); border:1px solid rgba(168,85,247,0.35); border-radius:10px; padding:0.55rem 0.75rem;">
+              <strong style="color:#e9d5ff; font-size:0.82rem; display:block;">1. Contexto Curado</strong>
+              <span style="font-size:0.74rem; color:var(--text-muted);">Reglas, memoria y datos justos (sin ruido)</span>
+            </div>
+            <div style="background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.35); border-radius:10px; padding:0.55rem 0.75rem;">
+              <strong style="color:#fde68a; font-size:0.82rem; display:block;">2. Tools, Skills y MCP</strong>
+              <span style="font-size:0.74rem; color:var(--text-muted);">Manos para leer, buscar y ejecutar</span>
+            </div>
+          </div>
+
+          <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.2); border-radius:999px; padding:0.38rem 1rem; text-align:center; width:fit-content; margin:0 auto 0.65rem; font-family:'Outfit', sans-serif; font-size:0.84rem; font-weight:700; color:#f8fafc;">
+            🧠 Cerebro intercambiable (Claude · GPT · Gemini)
+          </div>
+
+          <div style="background:rgba(34,197,94,0.12); border:1px solid rgba(34,197,94,0.35); border-radius:10px; padding:0.5rem 0.75rem; text-align:center;">
+            <strong style="color:#86efac; font-size:0.82rem;">3. Loop de Verificación y Límites</strong>
+            <span style="font-size:0.74rem; color:var(--text-muted); margin-left:0.4rem;">— Comprueba el resultado y se autocorrige antes de frenar</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:0.75rem; font-size:0.79rem; color:#e2e8f0;">
+        💡 <strong style="color:var(--secondary);">Un modelo mediano con gran contexto y buen arnés</strong> le gana siempre al modelo más caro a ciegas.
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- 7. BLOQUE 2: SYSTEM PROMPT, PERFIL, CONTEXTO PERSISTENTE Y DISEÑO LÓGICO -->
 <section>
   <!-- SLIDE 1: SYSTEM PROMPT + PERSISTENCIA DE CONTEXTO -->
@@ -1001,47 +1071,43 @@ Nunca inventes métricas que no estén en los archivos.</code></pre>
 <section>
   <!-- SLIDE 1: LAS 3 HERRAMIENTAS PARA CONSTRUIR HOY -->
   <section>
-    <span class="glass-pill amber"><i class="fa-solid fa-terminal"></i> BLOQUE 3 · CONSTRUIR AGENTES Y SISTEMAS</span>
+    <span class="glass-pill amber"><i class="fa-solid fa-terminal"></i> BLOQUE 3 · LOS 3 ARNESES PARA CONSTRUIR</span>
     <h2>¿Con qué herramienta <span class="text-gradient">construirlo hoy</span>?</h2>
-    <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:0.75rem;">Tres entornos líderes para crear agentes, herramientas y sistemas autónomos hablando en lenguaje natural.</p>
+    <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.1rem;">Las 3 hacen prácticamente lo mismo. Elegí según el <strong>diferencial</strong> que más te sirva:</p>
 
-    <div class="grid-3" style="max-width:1080px; margin:0 auto; text-align:left;">
-      <div class="glass-card" style="border-top:4px solid var(--accent); display:flex; flex-direction:column; justify-content:space-between;">
+    <div class="grid-3" style="max-width:1060px; margin:0 auto; text-align:left;">
+      <div class="glass-card" style="border-top:4px solid var(--accent); padding:1.45rem 1.4rem; display:flex; flex-direction:column; justify-content:space-between; gap:1.1rem;">
         <div>
-          <span class="badge-mini" style="color:#fde68a; border-color:rgba(245,158,11,0.45); margin-bottom:0.45rem;">Anthropic · Terminal &amp; App</span>
-          <h4 style="color:#fde68a; font-size:1.15rem;"><i class="fa-solid fa-terminal" style="margin-right:0.35rem;"></i> Claude Code</h4>
-          <p style="font-size:0.81rem; color:var(--text-muted); margin:0;">Agente de ejecución profunda que lee tus carpetas y proyectos, corre comandos, conecta MCPs/Skills y resuelve tareas largas de punta a punta.</p>
+          <span style="font-family:'JetBrains Mono', monospace; font-size:0.72rem; color:#fde68a; letter-spacing:0.06em; text-transform:uppercase;">Anthropic</span>
+          <h3 style="color:#f8fafc; font-size:1.55rem; margin:0.25rem 0 0;"><i class="fa-solid fa-terminal" style="color:var(--accent); margin-right:0.4rem; font-size:1.25rem;"></i>Claude Code</h3>
         </div>
-        <div style="margin-top:0.75rem; font-size:0.76rem; color:#fde68a; border-top:1px solid var(--glass-border); padding-top:0.5rem;">
-          🎯 <strong>Fuerte en:</strong> Delegación profunda, archivos locales y automatización real.
+        <div style="border-top:1px solid rgba(255,255,255,0.1); padding-top:0.85rem;">
+          <span style="font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:#fde68a; display:block; margin-bottom:0.3rem;">🎯 Su fuerte</span>
+          <strong style="font-size:0.98rem; color:#f8fafc; line-height:1.35; display:block;">Claude Code en la nube desde mobile</strong>
         </div>
       </div>
 
-      <div class="glass-card" style="border-top:4px solid var(--green); display:flex; flex-direction:column; justify-content:space-between;">
+      <div class="glass-card" style="border-top:4px solid var(--green); padding:1.45rem 1.4rem; display:flex; flex-direction:column; justify-content:space-between; gap:1.1rem;">
         <div>
-          <span class="badge-mini" style="color:#86efac; border-color:rgba(34,197,94,0.45); margin-bottom:0.45rem;">OpenAI · Chat + Cloud Sandbox</span>
-          <h4 style="color:#86efac; font-size:1.15rem;"><i class="fa-solid fa-cloud" style="margin-right:0.35rem;"></i> ChatGPT / Codex</h4>
-          <p style="font-size:0.81rem; color:var(--text-muted); margin:0;">Combina tu copiloto diario con contexto en ChatGPT y <strong>Codex</strong> (web, app y CLI) para delegar múltiples tareas en paralelo en la nube.</p>
+          <span style="font-family:'JetBrains Mono', monospace; font-size:0.72rem; color:#86efac; letter-spacing:0.06em; text-transform:uppercase;">OpenAI</span>
+          <h3 style="color:#f8fafc; font-size:1.55rem; margin:0.25rem 0 0;"><i class="fa-solid fa-cloud" style="color:var(--green); margin-right:0.4rem; font-size:1.25rem;"></i>ChatGPT / Codex</h3>
         </div>
-        <div style="margin-top:0.75rem; font-size:0.76rem; color:#86efac; border-top:1px solid var(--glass-border); padding-top:0.5rem;">
-          🎯 <strong>Fuerte en:</strong> Copiloto cotidiano + agentes corriendo en segundo plano.
+        <div style="border-top:1px solid rgba(255,255,255,0.1); padding-top:0.85rem;">
+          <span style="font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:#86efac; display:block; margin-bottom:0.3rem;">🎯 Su fuerte</span>
+          <strong style="font-size:0.98rem; color:#f8fafc; line-height:1.35; display:block;">Computer Use + tareas paralelas en la nube</strong>
         </div>
       </div>
 
-      <div class="glass-card" style="border-top:4px solid var(--secondary); display:flex; flex-direction:column; justify-content:space-between;">
+      <div class="glass-card" style="border-top:4px solid var(--secondary); padding:1.45rem 1.4rem; display:flex; flex-direction:column; justify-content:space-between; gap:1.1rem;">
         <div>
-          <span class="badge-mini" style="color:var(--secondary); border-color:rgba(34,211,238,0.45); margin-bottom:0.45rem;">Google · Plataforma Agent-First</span>
-          <h4 style="color:var(--secondary); font-size:1.15rem;"><i class="fa-solid fa-rocket" style="margin-right:0.35rem;"></i> Antigravity</h4>
-          <p style="font-size:0.81rem; color:var(--text-muted); margin:0;">Centro de mando visual para orquestar agentes y subagentes, con navegador integrado que prueba lo que construye, artefactos y multimodelo.</p>
+          <span style="font-family:'JetBrains Mono', monospace; font-size:0.72rem; color:var(--secondary); letter-spacing:0.06em; text-transform:uppercase;">Google</span>
+          <h3 style="color:#f8fafc; font-size:1.55rem; margin:0.25rem 0 0;"><i class="fa-solid fa-rocket" style="color:var(--secondary); margin-right:0.4rem; font-size:1.25rem;"></i>Antigravity</h3>
         </div>
-        <div style="margin-top:0.75rem; font-size:0.76rem; color:var(--secondary); border-top:1px solid var(--glass-border); padding-top:0.5rem;">
-          🎯 <strong>Fuerte en:</strong> Crear apps, tableros y sistemas verificando todo en vivo.
+        <div style="border-top:1px solid rgba(255,255,255,0.1); padding-top:0.85rem;">
+          <span style="font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--secondary); display:block; margin-bottom:0.3rem;">🎯 Su fuerte</span>
+          <strong style="font-size:0.98rem; color:#f8fafc; line-height:1.35; display:block;">Centro de mando visual + navegador integrado</strong>
         </div>
       </div>
-    </div>
-
-    <div class="highlight-box cyan" style="max-width:1080px; margin-top:0.75rem;">
-      <strong>Denominador común:</strong> Las 3 entienden contexto persistente, cargan <strong>Skills</strong> y se conectan a tus apps por <strong>MCP</strong>. Elegí una sola como base y construí ahí.
     </div>
   </section>
 
@@ -1149,56 +1215,74 @@ Nunca inventes métricas que no estén en los archivos.</code></pre>
   </section>
 </section>
 
-<!-- 10. BUENAS PRÁCTICAS (MODO FRASE EN UN SOLO SLIDE) -->
+<!-- 10. BUENAS PRÁCTICAS (DISEÑO EDITORIAL LIMPIO EN MODO FRASE) -->
 <section>
   <span class="glass-pill green"><i class="fa-solid fa-compass-drafting"></i> BUENAS PRÁCTICAS</span>
-  <h2>Principios para construir <span class="text-gradient">sin sobrecomplejizar</span></h2>
-  <p style="color:var(--text-muted); font-size:0.86rem; margin-bottom:0.75rem;">Nueve máximas de trinchera para diseñar agentes de IA y sistemas autónomos que funcionen en el mundo real.</p>
+  <h2 style="margin-bottom:0.2rem;">Cómo escalar <span class="text-gradient">sin sobrecomplejizar</span></h2>
 
-  <div class="maxim-grid">
-    <div class="maxim-card" style="border-left:3px solid var(--accent);">
-      <div class="maxim-head" style="color:#fde68a;"><i class="fa-solid fa-seedling"></i> 1. Ley de Gall</div>
-      <p class="maxim-quote">“Todo sistema complejo que funciona evolucionó sí o sí de un sistema simple que funcionaba.”</p>
+  <div class="manifesto-grid">
+    <div class="manifesto-item">
+      <span class="manifesto-num">01</span>
+      <div>
+        <span class="manifesto-title">Ley de Gall</span>
+        <span class="manifesto-phrase">Todo sistema complejo que funciona evolucionó de uno simple que funcionaba.</span>
+      </div>
     </div>
 
-    <div class="maxim-card" style="border-left:3px solid var(--secondary);">
-      <div class="maxim-head" style="color:var(--secondary);"><i class="fa-solid fa-arrows-spin"></i> 2. Loops y Objetivos</div>
-      <p class="maxim-quote">“No le des pasos a ciegas: dale un objetivo medible y un loop para verificar su propio resultado.”</p>
+    <div class="manifesto-item">
+      <span class="manifesto-num">02</span>
+      <div>
+        <span class="manifesto-title">Loops y objetivos claros</span>
+        <span class="manifesto-phrase">No des pasos a ciegas: dale una meta verificable para que se autocorrija solo.</span>
+      </div>
     </div>
 
-    <div class="maxim-card" style="border-left:3px solid var(--green);">
-      <div class="maxim-head" style="color:#86efac;"><i class="fa-solid fa-code-branch"></i> 3. Hombros de Gigantes</div>
-      <p class="maxim-quote">“No reinventes la rueda: subite a repos open source, Skills y conectores MCP que ya resolvió la comunidad.”</p>
+    <div class="manifesto-item">
+      <span class="manifesto-num">03</span>
+      <div>
+        <span class="manifesto-title">A hombros de gigantes</span>
+        <span class="manifesto-phrase">No reinventes la rueda: subite a proyectos open source, Skills y MCPs probados.</span>
+      </div>
     </div>
 
-    <div class="maxim-card" style="border-left:3px solid var(--primary);">
-      <div class="maxim-head" style="color:#e9d5ff;"><i class="fa-solid fa-folder-open"></i> 4. Contexto &gt; Prompt eterno</div>
-      <p class="maxim-quote">“Cuando el agente falla, casi nunca falta más prompt: falta mejor contexto.”</p>
+    <div class="manifesto-item">
+      <span class="manifesto-num">04</span>
+      <div>
+        <span class="manifesto-title">Regla fija antes que IA</span>
+        <span class="manifesto-phrase">Si algo se resuelve con lógica simple, no uses un agente para adivinarlo.</span>
+      </div>
     </div>
 
-    <div class="maxim-card" style="border-left:3px solid var(--secondary);">
-      <div class="maxim-head" style="color:var(--secondary);"><i class="fa-solid fa-gears"></i> 5. Regla fija primero</div>
-      <p class="maxim-quote">“Si algo se resuelve con una regla simple y determinística, no uses un agente para adivinarlo.”</p>
+    <div class="manifesto-item">
+      <span class="manifesto-num">05</span>
+      <div>
+        <span class="manifesto-title">Una sola responsabilidad</span>
+        <span class="manifesto-phrase">Un agente enfocado supera a cinco agentes complejos chocándose entre sí.</span>
+      </div>
     </div>
 
-    <div class="maxim-card" style="border-left:3px solid var(--accent);">
-      <div class="maxim-head" style="color:#fde68a;"><i class="fa-solid fa-bullseye"></i> 6. Una sola responsabilidad</div>
-      <p class="maxim-quote">“Un agente simple y enfocado le gana a cinco agentes complejos chocándose entre sí.”</p>
+    <div class="manifesto-item">
+      <span class="manifesto-num">06</span>
+      <div>
+        <span class="manifesto-title">Planificar antes de correr</span>
+        <span class="manifesto-phrase">Diez minutos alineando el plan ahorran horas corrigiendo el rumbo equivocado.</span>
+      </div>
     </div>
 
-    <div class="maxim-card" style="border-left:3px solid var(--primary);">
-      <div class="maxim-head" style="color:#e9d5ff;"><i class="fa-solid fa-map"></i> 7. Planificar antes de correr</div>
-      <p class="maxim-quote">“Diez minutos alineando el plan ahorran horas corrigiendo un agente en la dirección equivocada.”</p>
+    <div class="manifesto-item">
+      <span class="manifesto-num">07</span>
+      <div>
+        <span class="manifesto-title">Radio de impacto mínimo</span>
+        <span class="manifesto-phrase">Libertad total para leer y preparar; humano en el loop para lo irreversible.</span>
+      </div>
     </div>
 
-    <div class="maxim-card" style="border-left:3px solid var(--red);">
-      <div class="maxim-head" style="color:#fda4af;"><i class="fa-solid fa-shield-halved"></i> 8. Radio de impacto mínimo</div>
-      <p class="maxim-quote">“Autonomía total para leer y preparar borradores; humano en el loop para lo irreversible.”</p>
-    </div>
-
-    <div class="maxim-card" style="border-left:3px solid var(--green);">
-      <div class="maxim-head" style="color:#86efac;"><i class="fa-solid fa-vial-circle-check"></i> 9. Evidencia &gt; Intuición</div>
-      <p class="maxim-quote">“No te enamores de una demo linda: probá al agente contra tus casos reales más difíciles.”</p>
+    <div class="manifesto-item">
+      <span class="manifesto-num">08</span>
+      <div>
+        <span class="manifesto-title">Evidencia sobre intuición</span>
+        <span class="manifesto-phrase">No te enamores de una demo linda: probalo con tus casos reales más difíciles.</span>
+      </div>
     </div>
   </div>
 </section>
@@ -1226,10 +1310,10 @@ Nunca inventes métricas que no estén en los archivos.</code></pre>
         <h4 style="color:var(--secondary);font-size:0.92rem;"><i class="fa-solid fa-terminal"></i> 2. Dónde Construir Hoy</h4>
         <ul style="list-style:none;padding:0;margin:0;font-size:0.76rem;line-height:1.55;">
           <li style="border-bottom:1px solid var(--glass-border);padding-bottom:0.45rem;margin-bottom:0.45rem;">
-            <a href="https://claude.ai/code" target="_blank" style="color:var(--text-main);text-decoration:none;"><i class="fa-solid fa-terminal" style="color:#fde68a;margin-right:0.35rem;"></i><strong>Claude Code ↗</strong></a><br><span style="color:var(--text-muted);">Agente profundo de Anthropic en terminal y escritorio</span>
+            <a href="https://claude.ai/code" target="_blank" style="color:var(--text-main);text-decoration:none;"><i class="fa-solid fa-terminal" style="color:#fde68a;margin-right:0.35rem;"></i><strong>Claude Code ↗</strong></a><br><span style="color:var(--text-muted);">Claude Code en la nube desde mobile + terminal/desktop</span>
           </li>
           <li style="border-bottom:1px solid var(--glass-border);padding-bottom:0.45rem;margin-bottom:0.45rem;">
-            <a href="https://chatgpt.com/codex" target="_blank" style="color:var(--text-main);text-decoration:none;"><i class="fa-solid fa-cloud" style="color:var(--green);margin-right:0.35rem;"></i><strong>ChatGPT / Codex ↗</strong></a><br><span style="color:var(--text-muted);">Copiloto diario + agente autónomo en sandbox cloud y CLI</span>
+            <a href="https://chatgpt.com/codex" target="_blank" style="color:var(--text-main);text-decoration:none;"><i class="fa-solid fa-cloud" style="color:var(--green);margin-right:0.35rem;"></i><strong>ChatGPT / Codex ↗</strong></a><br><span style="color:var(--text-muted);">Computer Use + agentes en paralelo en la nube</span>
           </li>
           <li>
             <a href="https://antigravity.google/" target="_blank" style="color:var(--text-main);text-decoration:none;"><i class="fa-solid fa-rocket" style="color:var(--secondary);margin-right:0.35rem;"></i><strong>Antigravity ↗</strong></a><br><span style="color:var(--text-muted);">Plataforma agent-first de Google con navegador integrado</span>
